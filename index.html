@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Showcase - Screen Recording for Creatives</title>
+    <title>Showcase - Screen Recordings That Show Off</title>
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         * {
@@ -33,7 +33,7 @@
         header {
             padding: 2rem 4rem;
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
             border-bottom: 1px solid var(--border);
             background: var(--card-bg);
@@ -50,24 +50,7 @@
             letter-spacing: -0.02em;
         }
 
-        nav {
-            display: flex;
-            gap: 2.5rem;
-            align-items: center;
-        }
-
-        nav a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 0.95rem;
-            transition: color 0.3s;
-        }
-
-        nav a:hover {
-            color: var(--text);
-        }
-
-        .cta-button {
+        .header-cta {
             background: var(--text);
             color: var(--bg);
             padding: 0.7rem 1.5rem;
@@ -77,12 +60,12 @@
             transition: transform 0.2s, box-shadow 0.3s;
         }
 
-        .cta-button:hover {
+        .header-cta:hover {
             transform: translateY(-1px);
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
 
-        /* Hero */
+        /* Hero Section */
         .hero {
             padding: 8rem 4rem 4rem;
             max-width: 1400px;
@@ -91,10 +74,11 @@
 
         .hero-content {
             max-width: 680px;
-            margin-bottom: 4rem;
+            margin: 0 auto 4rem;
+            text-align: center;
         }
 
-        h1 {
+        .hero-content h1 {
             font-family: 'Crimson Pro', serif;
             font-size: 5rem;
             font-weight: 600;
@@ -104,7 +88,7 @@
             animation: fadeInUp 0.8s ease-out;
         }
 
-        .subtitle {
+        .hero-content .subtitle {
             font-size: 1.3rem;
             color: var(--text-muted);
             line-height: 1.7;
@@ -112,13 +96,15 @@
             animation: fadeInUp 0.8s ease-out 0.2s both;
         }
 
-        .hero-buttons {
+        .cta-container {
             display: flex;
-            gap: 1rem;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.75rem;
             animation: fadeInUp 0.8s ease-out 0.4s both;
         }
 
-        .primary-btn {
+        .primary-cta {
             background: var(--text);
             color: var(--bg);
             padding: 1rem 2.5rem;
@@ -126,112 +112,62 @@
             text-decoration: none;
             font-weight: 500;
             font-size: 1.05rem;
-            transition: transform 0.2s, box-shadow 0.3s;
             border: 2px solid var(--text);
+            transition: transform 0.2s, box-shadow 0.3s;
+            text-align: center;
+            display: inline-block;
+            width: fit-content;
         }
 
-        .primary-btn:hover {
+        .primary-cta:hover {
             transform: translateY(-2px);
             box-shadow: 0 8px 24px rgba(0,0,0,0.15);
         }
 
-        .secondary-btn {
-            background: transparent;
-            color: var(--text);
-            padding: 1rem 2.5rem;
-            border-radius: 2rem;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 1.05rem;
-            border: 2px solid var(--border);
-            transition: border-color 0.3s;
+        .helper-text {
+            font-size: 0.9rem;
+            color: var(--text-muted);
         }
 
-        .secondary-btn:hover {
-            border-color: var(--text);
-        }
-
-        /* Hero Visual */
-        .hero-visual {
-            position: relative;
-            width: 100%;
-            height: 600px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 1.5rem;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+        /* UI Showcase Section */
+        .ui-showcase {
+            margin-top: 4rem;
             animation: fadeInUp 0.8s ease-out 0.6s both;
         }
 
-        .mockup-container {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 90%;
-            height: 90%;
-            background: #1A1A1A;
-            border-radius: 1rem;
-            padding: 1.5rem;
-            display: flex;
-            flex-direction: column;
+        .ui-images {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
         }
 
-        .mockup-header {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: #444;
-        }
-
-        .mockup-content {
-            flex: 1;
-            background: linear-gradient(180deg, #2A2A2A 0%, #1A1A1A 100%);
-            border-radius: 0.5rem;
+        .ui-image-container {
             position: relative;
+            width: 100%;
+            aspect-ratio: 16/10;
+            border-radius: 1rem;
             overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+            border: 1px solid var(--border);
         }
 
-        .floating-frame {
+        .ui-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .ui-label {
             position: absolute;
-            bottom: 2rem;
-            right: 2rem;
-            width: 180px;
-            height: 180px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #F093FB 0%, #F5576C 100%);
-            border: 4px solid #fff;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
-            animation: float 3s ease-in-out infinite;
-        }
-
-        .custom-cursor {
-            position: absolute;
-            top: 40%;
-            left: 35%;
-            width: 32px;
-            height: 32px;
-            background: #4FACFE;
-            border-radius: 50%;
-            box-shadow: 0 0 20px rgba(79, 172, 254, 0.6);
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.2); opacity: 0.8; }
+            top: 1rem;
+            right: 1rem;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 0.4rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border: 1px solid var(--border);
         }
 
         @keyframes fadeInUp {
@@ -245,6 +181,37 @@
             }
         }
 
+
+        /* Problem Section */
+        .problem-section {
+            padding: 8rem 4rem;
+            background: white;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .problem-container {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .problem-container h2 {
+            font-family: 'Crimson Pro', serif;
+            font-size: 3.5rem;
+            font-weight: 600;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: 1.5rem;
+        }
+
+        .problem-container p {
+            font-size: 1.3rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+
         /* Features Section */
         .features {
             padding: 8rem 4rem;
@@ -257,30 +224,21 @@
             margin-bottom: 5rem;
         }
 
-        .section-label {
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: var(--text-muted);
-            margin-bottom: 1rem;
-        }
-
-        h2 {
+        .section-header h2 {
             font-family: 'Crimson Pro', serif;
             font-size: 3.5rem;
             font-weight: 600;
             letter-spacing: -0.02em;
-            margin-bottom: 1.5rem;
         }
 
         .feature-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 3rem;
         }
 
         .feature-card {
-            background: var(--card-bg);
+            background: white;
             padding: 3rem;
             border-radius: 1rem;
             border: 1px solid var(--border);
@@ -290,18 +248,6 @@
         .feature-card:hover {
             transform: translateY(-4px);
             box-shadow: 0 12px 40px rgba(0,0,0,0.08);
-        }
-
-        .feature-icon {
-            width: 60px;
-            height: 60px;
-            border-radius: 1rem;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.5rem;
-            font-size: 1.8rem;
         }
 
         .feature-card h3 {
@@ -315,6 +261,8 @@
             line-height: 1.7;
         }
 
+
+
         /* Pricing Section */
         .pricing {
             padding: 8rem 4rem;
@@ -326,6 +274,30 @@
         .pricing-container {
             max-width: 1000px;
             margin: 0 auto;
+        }
+
+        .pricing h2 {
+            font-family: 'Crimson Pro', serif;
+            font-size: 3.5rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .pricing-copy {
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+            line-height: 1.8;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .pricing-copy strong {
+            color: var(--text);
         }
 
         .pricing-cards {
@@ -433,11 +405,46 @@
             color: var(--bg);
         }
 
+
+        /* Final CTA */
+        .final-cta {
+            padding: 8rem 4rem;
+            background: var(--bg);
+            text-align: center;
+        }
+
+        .final-cta h2 {
+            font-family: 'Crimson Pro', serif;
+            font-size: 4rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin-bottom: 2rem;
+            color: var(--text);
+        }
+
+        .final-cta .cta-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .final-cta .primary-cta {
+            font-size: 1.15rem;
+            padding: 1.2rem 3rem;
+        }
+
+        .final-cta .helper-text {
+            color: var(--text-muted);
+        }
+
+
         /* Footer */
         footer {
             padding: 4rem;
             text-align: center;
             color: var(--text-muted);
+            background: white;
             border-top: 1px solid var(--border);
         }
 
@@ -445,38 +452,49 @@
             margin-bottom: 1rem;
         }
 
+        /* Responsive */
         @media (max-width: 768px) {
             header {
                 padding: 1.5rem 2rem;
+            }
+
+            .logo {
+                font-size: 1.5rem;
             }
 
             .hero {
                 padding: 4rem 2rem 2rem;
             }
 
-            h1 {
+            .hero-content h1 {
                 font-size: 3rem;
             }
 
-            .subtitle {
+            .hero-content .subtitle {
                 font-size: 1.1rem;
             }
 
-            .hero-visual {
-                height: 400px;
+            .ui-images {
+                grid-template-columns: 1fr;
             }
 
+            .problem-section,
+            .who-section,
             .features,
-            .pricing {
+            .pricing,
+            .final-cta {
                 padding: 4rem 2rem;
             }
 
-            h2 {
+            .problem-container h2,
+            .who-container h2,
+            .section-header h2,
+            .pricing h2,
+            .final-cta h2 {
                 font-size: 2.5rem;
             }
 
-            .feature-grid,
-            .pricing-cards {
+            .feature-grid {
                 grid-template-columns: 1fr;
             }
         }
@@ -485,89 +503,79 @@
 <body>
     <header>
         <div class="logo">Showcase</div>
-        <nav>
-            <a href="#features">Features</a>
-            <a href="#pricing">Pricing</a>
-            <a href="#" class="cta-button">Get Started</a>
-        </nav>
     </header>
 
+    <!-- HERO -->
     <section class="hero">
         <div class="hero-content">
-            <h1>Screen recording that shows off</h1>
-            <p class="subtitle">Capture your creative process with style. Auto-zoom, custom frames, and personalized cursors that make your tutorials unforgettable.</p>
-            <div class="hero-buttons">
-                <a href="#" class="primary-btn">Download for Mac</a>
-                <a href="#" class="secondary-btn">Watch Demo</a>
+            <h1>Screen recordings that show off</h1>
+            <p class="subtitle">Showcase is a screen recording tool for designers, creators, and educators who want their tutorials to look as polished as their work — with auto-zoom, custom cursors, and branded webcam frames.</p>
+            <div class="cta-container">
+                <a href="#waitlist" class="primary-cta">Join the waitlist</a>
+                <p class="helper-text">No spam. Just early access.</p>
             </div>
         </div>
 
-        <div class="hero-visual">
-            <div class="mockup-container">
-                <div class="mockup-header">
-                    <div class="dot"></div>
-                    <div class="dot"></div>
-                    <div class="dot"></div>
+        <!-- UI Showcase with Dark & Light Mode -->
+        <div class="ui-showcase">
+            <div class="ui-images">
+                <div class="ui-image-container">
+                    <img src="https://raw.githubusercontent.com/megdesigns/Showcase/main/photos/showcasedark.png" alt="Showcase Dark Mode UI">
+                    <div class="ui-label">Dark Mode</div>
                 </div>
-                <div class="mockup-content">
-                    <div class="custom-cursor"></div>
-                    <div class="floating-frame"></div>
+                <div class="ui-image-container">
+                    <img src="https://raw.githubusercontent.com/megdesigns/Showcase/main/photos/showcaselight.png" alt="Showcase Light Mode UI">
+                    <div class="ui-label">Light Mode</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="features" id="features">
+    <!-- PROBLEM SECTION -->
+    <section class="problem-section">
+        <div class="problem-container">
+            <h2>Your work is thoughtful. Your screen recordings shouldn't look generic.</h2>
+            <p>Showcase lets you record with intention — so your videos feel designed, not default.</p>
+        </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="features">
         <div class="section-header">
-            <div class="section-label">Features</div>
-            <h2>Built for creators who care about aesthetics</h2>
+            <h2>What you record matters. How it looks does too.</h2>
         </div>
 
         <div class="feature-grid">
             <div class="feature-card">
-                <div class="feature-icon">🎯</div>
-                <h3>Auto-Zoom Magic</h3>
-                <p>Intelligent zoom that follows your mouse and highlights clicks—just like those polished Figma tutorials you admire. No manual editing required.</p>
+                <h3>Smart Auto-Zoom</h3>
+                <p>Zoom follows your clicks and movement — like the tutorials you actually admire.</p>
             </div>
 
             <div class="feature-card">
-                <div class="feature-icon">🎨</div>
-                <h3>Custom Webcam Frames</h3>
-                <p>Choose from dozens of frame styles, shapes, and positions. From minimal circles to bold geometric designs—make your presence match your brand.</p>
+                <h3>Custom Cursors & Click Styles</h3>
+                <p>Change color, size, and animation to match your personal brand.</p>
             </div>
 
             <div class="feature-card">
-                <div class="feature-icon">✨</div>
-                <h3>Personalized Cursors</h3>
-                <p>Stand out with custom cursor designs, colors, and click animations. Add personality to every interaction in your recordings.</p>
+                <h3>Branded Webcam Frames</h3>
+                <p>Choose shapes, styles, and placement that feel intentional.</p>
             </div>
 
             <div class="feature-card">
-                <div class="feature-icon">⚡</div>
-                <h3>Instant Export</h3>
-                <p>Export in multiple formats optimized for YouTube, Twitter, or your portfolio. Share directly or download for further editing.</p>
-            </div>
-
-            <div class="feature-card">
-                <div class="feature-icon">🎭</div>
-                <h3>Preset Themes</h3>
-                <p>One-click themes that apply consistent styling to frames, cursors, and animations. Create your signature look in seconds.</p>
-            </div>
-
-            <div class="feature-card">
-                <div class="feature-icon">🚀</div>
-                <h3>Lightweight & Fast</h3>
-                <p>Native Mac app that doesn't slow you down. Record in the background while you work without impacting performance.</p>
+                <h3>Effortless Export & Sharing</h3>
+                <p>No editing gymnastics. Record → export → share.</p>
             </div>
         </div>
     </section>
 
+    <!-- PRICING TEASER -->
     <section class="pricing" id="pricing">
         <div class="pricing-container">
             <div class="section-header">
-                <div class="section-label">Pricing</div>
-                <h2>Choose what works for you</h2>
+                <h2>Simple pricing. No overthinking.</h2>
             </div>
+            
+            <p class="pricing-copy">Early users on the waitlist get priority access and launch perks.</p>
 
             <div class="pricing-cards">
                 <div class="pricing-card">
@@ -598,6 +606,15 @@
                     <button class="pricing-btn">Get Lifetime Access</button>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="final-cta" id="waitlist">
+        <h2>Be one of the first to record differently.</h2>
+        <div class="cta-container">
+            <a href="https://forms.gle/YOUR_FORM_ID" class="primary-cta" target="_blank">Join the Showcase waitlist</a>
+            <p class="helper-text">Early access • Launch updates • That's it</p>
         </div>
     </section>
 
