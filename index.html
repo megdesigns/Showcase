@@ -351,12 +351,16 @@
             font-size: 3.5rem;
             font-weight: 600;
             margin-bottom: 0.5rem;
+            filter: blur(8px);
+            user-select: none;
         }
 
         .price-period {
             font-size: 1rem;
             color: var(--text-muted);
             margin-bottom: 2rem;
+            filter: blur(6px);
+            user-select: none;
         }
 
         .pricing-card.featured .price-period {
@@ -387,11 +391,35 @@
             cursor: pointer;
             transition: all 0.3s;
             font-size: 1rem;
+            position: relative;
+        }
+
+        .pricing-btn::after {
+            content: 'Coming Soon';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-weight: 600;
+        }
+
+        .pricing-btn:hover::after {
+            opacity: 1;
         }
 
         .pricing-btn:hover {
             background: var(--text);
             color: var(--bg);
+        }
+
+        .pricing-btn span {
+            transition: opacity 0.3s;
+        }
+
+        .pricing-btn:hover span {
+            opacity: 0;
         }
 
         .pricing-card.featured .pricing-btn {
@@ -400,8 +428,16 @@
             border-color: var(--bg);
         }
 
+        .pricing-card.featured .pricing-btn::after {
+            color: var(--bg);
+        }
+
         .pricing-card.featured .pricing-btn:hover {
             background: transparent;
+            color: var(--bg);
+        }
+
+        .pricing-card.featured .pricing-btn:hover::after {
             color: var(--bg);
         }
 
@@ -514,7 +550,7 @@
             <h1>Screen recordings that show off</h1>
             <p class="subtitle">Showcase is a screen recording tool for designers, creators, and educators who want their tutorials to look as polished as their work — with auto-zoom, custom cursors, and branded webcam frames.</p>
             <div class="cta-container">
-                <a href="https://tally.so/r/D4p48Z" class="primary-cta" target="_blank">Join the waitlist</a>
+                <a href="https://www.revflow.co.uk/legal/p" class="primary-cta" target="_blank">Join the waitlist</a>
                 <p class="helper-text">No spam. Just early access.</p>
             </div>
         </div>
@@ -592,7 +628,7 @@
                         <li>Auto-zoom & tracking</li>
                         <li>Custom frames & cursors</li>
                     </ul>
-                    <button class="pricing-btn">Start Free Trial</button>
+                    <button class="pricing-btn"><span>Start Free Trial</span></button>
                 </div>
 
                 <div class="pricing-card featured">
@@ -606,7 +642,7 @@
                         <li>Early access to features</li>
                         <li>One-time payment</li>
                     </ul>
-                    <button class="pricing-btn">Get Lifetime Access</button>
+                    <button class="pricing-btn"><span>Get Lifetime Access</span></button>
                 </div>
             </div>
         </div>
@@ -616,14 +652,14 @@
     <section class="final-cta" id="waitlist">
         <h2>Be one of the first to record differently.</h2>
         <div class="cta-container">
-            <a href="https://tally.so/r/D4p48Z" class="primary-cta" target="_blank">Join the Showcase waitlist</a>
+            <a href="https://www.revflow.co.uk/legal/p" class="primary-cta" target="_blank">Join the Showcase waitlist</a>
             <p class="helper-text">Early access • Launch updates • That's it</p>
         </div>
     </section>
 
     <footer>
         <p>&copy; 2026 Showcase. Made for designers who care about the details.</p>
-        <p>Built by <a href="https://mariangasinu.com" style="color: var(--text);">Meg</a> • <a href="privacy.html" style="color: var(--text);">Privacy Policy</a></p>
+        <p>Built by <a href="https://mariangasinu.com" style="color: var(--text);">Marian Gasinu</a> • <a href="privacy.html" style="color: var(--text);">Privacy Policy</a></p>
     </footer>
 </body>
 </html>
