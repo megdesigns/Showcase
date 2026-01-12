@@ -39,17 +39,117 @@
             transition: background 0.3s ease, color 0.3s ease;
         }
 
+        /* Scroll Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            animation-fill-mode: forwards;
+        }
+
+        .animate-on-scroll.animated {
+            animation-duration: 0.8s;
+            animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .fade-in-up {
+            animation-name: fadeInUp;
+        }
+
+        .fade-in {
+            animation-name: fadeIn;
+        }
+
+        .slide-in-left {
+            animation-name: slideInLeft;
+        }
+
+        .slide-in-right {
+            animation-name: slideInRight;
+        }
+
+        .scale-in {
+            animation-name: scaleIn;
+        }
+
+        /* Stagger animation delays */
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        .delay-400 { animation-delay: 0.4s; }
+        .delay-500 { animation-delay: 0.5s; }
+        .delay-600 { animation-delay: 0.6s; }
+
         /* Header */
         header {
             padding: 2rem 4rem;
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
             border-bottom: 2px solid var(--border);
             background: var(--bg);
             position: sticky;
             top: 0;
             z-index: 100;
+        }
+
+        .header-container {
+            max-width: 1600px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         .logo {
@@ -139,6 +239,7 @@
             letter-spacing: -0.05em;
             margin-bottom: 2rem;
             color: var(--text);
+            text-align: center;
         }
 
         .hero-content .subtitle {
@@ -152,7 +253,7 @@
         .cta-container {
             display: flex;
             flex-direction: column;
-            align-items: flex-start;
+            align-items: center;
             gap: 1rem;
         }
 
@@ -166,16 +267,36 @@
             font-weight: 700;
             font-size: 1.1rem;
             letter-spacing: 0.02em;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             text-transform: uppercase;
             display: inline-block;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .primary-cta::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .primary-cta:hover::before {
+            width: 300px;
+            height: 300px;
         }
 
         .primary-cta:hover {
             background: transparent;
             color: var(--text);
             transform: translateY(-3px);
-            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.2);
         }
 
         .helper-text {
@@ -202,17 +323,24 @@
             overflow: hidden;
             border: 3px solid var(--border);
             border-radius: 1rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .ui-image-container:hover {
+            border-color: var(--text);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            transform: translateY(-4px);
         }
 
         .ui-image-container img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.4s ease;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .ui-image-container:hover img {
-            transform: scale(1.02);
+            transform: scale(1.05);
         }
 
         .ui-label {
@@ -261,7 +389,7 @@
             font-weight: 500;
         }
 
-        /* Comparison Table */
+        /* Comparison Section - Card Based */
         .comparison-section {
             padding: 8rem 4rem;
             max-width: 1400px;
@@ -289,75 +417,94 @@
             color: var(--text-muted);
         }
 
-        .comparison-table {
-            border: 3px solid var(--border);
-            border-radius: 1rem;
-            overflow: hidden;
-        }
-
-        .comparison-row {
+        .comparison-grid {
             display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            border-bottom: 2px solid var(--border);
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
         }
 
-        .comparison-row:last-child {
+        .comparison-card {
+            border: 3px solid var(--border);
+            border-radius: 1.5rem;
+            padding: 3rem 2.5rem;
+            background: var(--bg);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .comparison-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 48px rgba(0,0,0,0.12);
+            border-color: var(--text);
+        }
+
+        .comparison-card.featured {
+            background: var(--text);
+            color: var(--bg);
+            border-color: var(--text);
+        }
+
+        .comparison-card.featured:hover {
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+        }
+
+        .comparison-card-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: var(--text);
+            text-align: center;
+        }
+
+        .comparison-card.featured .comparison-card-title {
+            color: var(--bg);
+        }
+
+        .comparison-features {
+            list-style: none;
+        }
+
+        .comparison-features li {
+            padding: 1rem 0;
+            border-bottom: 2px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: var(--text);
+        }
+
+        .comparison-card.featured .comparison-features li {
+            border-bottom-color: rgba(250, 250, 249, 0.2);
+            color: var(--bg);
+        }
+
+        .comparison-features li:last-child {
             border-bottom: none;
         }
 
-        .comparison-row.header {
-            background: var(--card-bg);
-            font-weight: 700;
-        }
-
-        .comparison-cell {
-            padding: 2rem 1.5rem;
-            border-right: 2px solid var(--border);
-            color: var(--text);
-            transition: background 0.3s;
-        }
-
-        .comparison-cell:last-child {
-            border-right: none;
-        }
-
-        .comparison-row:not(.header) .comparison-cell:first-child {
-            font-weight: 600;
-        }
-
-        .comparison-cell.highlight {
-            background: var(--text);
-            color: var(--bg);
-            font-weight: 700;
-        }
-
-        [data-theme="dark"] .comparison-cell.highlight {
-            background: var(--text);
-            color: var(--bg);
-        }
-
-        .comparison-row:not(.header):hover {
-            background: var(--card-bg);
-        }
-
-        .check {
-            color: #10B981;
-            font-weight: 700;
+        .feature-icon {
             font-size: 1.2rem;
+            font-weight: 700;
+            min-width: 20px;
         }
 
-        [data-theme="dark"] .check {
+        .feature-icon.check {
+            color: #10B981;
+        }
+
+        .feature-icon.cross {
+            color: #EF4444;
+        }
+
+        [data-theme="dark"] .feature-icon.check {
             color: #34D399;
         }
 
-        .cross {
-            color: #EF4444;
-            font-weight: 700;
-            font-size: 1.2rem;
+        [data-theme="dark"] .feature-icon.cross {
+            color: #F87171;
         }
 
-        [data-theme="dark"] .cross {
-            color: #F87171;
+        .comparison-card.featured .feature-icon.check {
+            color: #34D399;
         }
 
         /* Features */
@@ -392,7 +539,7 @@
         .feature-card {
             padding: 4rem 3rem;
             border-right: 3px solid var(--border);
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             background: var(--bg);
         }
 
@@ -404,6 +551,7 @@
             background: var(--card-bg);
             transform: scale(1.05);
             z-index: 10;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.1);
         }
 
         .feature-number {
@@ -413,6 +561,12 @@
             color: var(--text-muted);
             margin-bottom: 1rem;
             line-height: 1;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .feature-card:hover .feature-number {
+            transform: scale(1.1);
+            color: var(--text);
         }
 
         .feature-card h3 {
@@ -471,20 +625,24 @@
             padding: 3.5rem 3rem;
             border: 3px solid var(--border);
             border-radius: 1.5rem;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             background: var(--bg);
         }
 
         .pricing-card:hover {
             border-color: var(--text);
-            transform: translateY(-8px);
-            box-shadow: 0 16px 48px rgba(0,0,0,0.12);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
         }
 
         .pricing-card.featured {
             background: var(--text);
             color: var(--bg);
             border-color: var(--text);
+        }
+
+        .pricing-card.featured:hover {
+            box-shadow: 0 24px 70px rgba(0,0,0,0.25);
         }
 
         .pricing-card.featured h3,
@@ -625,6 +783,13 @@
             background: var(--card-bg);
             border-top: 3px solid var(--border);
             font-size: 0.9rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .footer-container {
+            max-width: 1600px;
+            width: 100%;
         }
 
         footer p {
@@ -663,13 +828,8 @@
                 border-bottom: none;
             }
 
-            .comparison-row {
-                grid-template-columns: 2fr 1fr 1fr 1fr;
-                font-size: 0.9rem;
-            }
-
-            .comparison-cell {
-                padding: 1.5rem 1rem;
+            .comparison-grid {
+                grid-template-columns: 1fr;
             }
         }
 
@@ -678,6 +838,11 @@
                 grid-template-columns: 1fr;
                 gap: 4rem;
                 padding: 6rem 2rem;
+                min-height: auto;
+            }
+
+            .hero-content {
+                max-width: 100%;
             }
 
             .hero-content h1 {
@@ -692,8 +857,14 @@
                 grid-template-columns: 1fr;
             }
 
-            .comparison-table {
-                overflow-x: auto;
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-header h2,
+            .comparison-header h2,
+            .pricing h2 {
+                font-size: 3.5rem;
             }
         }
 
@@ -706,8 +877,85 @@
                 font-size: 1.5rem;
             }
 
+            .logo img {
+                height: 28px;
+            }
+
+            .mac-label {
+                font-size: 0.75rem;
+                padding: 0.5rem 1rem;
+            }
+
+            .theme-toggle {
+                width: 38px;
+                height: 38px;
+            }
+
+            .hero {
+                padding: 4rem 1.5rem 3rem;
+            }
+
             .hero-content h1 {
-                font-size: 3rem;
+                font-size: 2.5rem;
+                line-height: 1.1;
+            }
+
+            .hero-content .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .primary-cta {
+                padding: 1rem 2rem;
+                font-size: 0.95rem;
+            }
+
+            .ui-label {
+                top: 1rem;
+                right: 1rem;
+                padding: 0.5rem 1rem;
+                font-size: 0.75rem;
+            }
+
+            .problem-section,
+            .comparison-section,
+            .features,
+            .pricing,
+            .final-cta {
+                padding: 4rem 1.5rem;
+            }
+
+            .problem-container h2 {
+                font-size: 2rem;
+                line-height: 1.2;
+            }
+
+            .problem-container p {
+                font-size: 1.1rem;
+            }
+
+            .comparison-header h2,
+            .section-header h2,
+            .pricing h2,
+            .final-cta h2 {
+                font-size: 2rem;
+            }
+
+            .comparison-header p,
+            .pricing-copy {
+                font-size: 1rem;
+            }
+
+            .comparison-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .comparison-card-title {
+                font-size: 1.4rem;
+            }
+
+            .comparison-features li {
+                font-size: 0.9rem;
+                padding: 0.8rem 0;
             }
 
             .feature-grid {
@@ -717,58 +965,101 @@
             .feature-card {
                 border-right: none;
                 border-bottom: 3px solid var(--border);
+                padding: 3rem 2rem;
             }
 
             .feature-card:last-child {
                 border-bottom: none;
             }
 
-            .problem-container h2,
-            .section-header h2,
-            .pricing h2,
-            .final-cta h2,
-            .comparison-header h2 {
+            .feature-number {
                 font-size: 2.5rem;
             }
 
-            .comparison-row {
-                grid-template-columns: 1fr;
+            .feature-card h3 {
+                font-size: 1.5rem;
             }
 
-            .comparison-cell {
-                border-right: none;
-                border-bottom: 2px solid var(--border);
+            .pricing-card {
+                padding: 3rem 2rem;
             }
 
-            .comparison-cell:last-child {
-                border-bottom: none;
+            .plan-name {
+                font-size: 0.85rem;
+            }
+
+            .price {
+                font-size: 3.5rem;
+            }
+
+            .price.free {
+                font-size: 2.5rem;
+            }
+
+            .pricing-features li {
+                font-size: 0.9rem;
+                padding: 0.8rem 0;
+            }
+
+            .final-cta h2 {
+                font-size: 2.5rem;
+            }
+
+            .final-cta .primary-cta {
+                font-size: 1rem;
+                padding: 1.2rem 2.5rem;
+            }
+
+            footer {
+                padding: 3rem 1.5rem;
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .problem-container h2,
+            .comparison-header h2,
+            .section-header h2,
+            .pricing h2,
+            .final-cta h2 {
+                font-size: 1.8rem;
+            }
+
+            .header-right {
+                gap: 0.75rem;
             }
         }
     </style>
 </head>
 <body>
     <header>
-        <div class="logo">
-            <img src="https://raw.githubusercontent.com/megdesigns/Showcase/main/photos/showcaselogo.png" alt="Showcase Logo">
-            Showcase
-        </div>
-        <div class="header-right">
-            <div class="mac-label">macOS</div>
-            <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
-                <span class="theme-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="5"></circle>
-                        <line x1="12" y1="1" x2="12" y2="3"></line>
-                        <line x1="12" y1="21" x2="12" y2="23"></line>
-                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                        <line x1="1" y1="12" x2="3" y2="12"></line>
-                        <line x1="21" y1="12" x2="23" y2="12"></line>
-                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                    </svg>
-                </span>
-            </button>
+        <div class="header-container">
+            <div class="logo">
+                <img src="https://raw.githubusercontent.com/megdesigns/Showcase/main/photos/showcaselogo.png" alt="Showcase Logo">
+                Showcase
+            </div>
+            <div class="header-right">
+                <div class="mac-label">macOS</div>
+                <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+                    <span class="theme-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <line x1="12" y1="1" x2="12" y2="3"></line>
+                            <line x1="12" y1="21" x2="12" y2="23"></line>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                            <line x1="1" y1="12" x2="3" y2="12"></line>
+                            <line x1="21" y1="12" x2="23" y2="12"></line>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                        </svg>
+                    </span>
+                </button>
+            </div>
         </div>
     </header>
 
@@ -800,66 +1091,56 @@
     <!-- PROBLEM -->
     <section class="problem-section">
         <div class="problem-container">
-            <h2>Your work is thoughtful. Your screen recordings shouldn't look generic.</h2>
-            <p>Showcase lets you record with intention — so your videos feel designed, not default.</p>
+            <h2 class="animate-on-scroll fade-in-up">Your work is thoughtful. Your screen recordings shouldn't look generic.</h2>
+            <p class="animate-on-scroll fade-in-up delay-200">Showcase lets you record with intention — so your videos feel designed, not default.</p>
         </div>
     </section>
 
-    <!-- COMPARISON TABLE -->
+    <!-- COMPARISON -->
     <section class="comparison-section">
         <div class="comparison-header">
-            <h2>How Showcase compares</h2>
-            <p>See how we stack up against other tools</p>
+            <h2 class="animate-on-scroll fade-in-up">How Showcase compares</h2>
+            <p class="animate-on-scroll fade-in-up delay-100">See what makes us different</p>
         </div>
 
-        <div class="comparison-table">
-            <div class="comparison-row header">
-                <div class="comparison-cell">Feature</div>
-                <div class="comparison-cell highlight">Showcase</div>
-                <div class="comparison-cell">Generic Tools</div>
-                <div class="comparison-cell">Pro Tools</div>
+        <div class="comparison-grid">
+            <!-- Showcase Card -->
+            <div class="comparison-card featured animate-on-scroll scale-in delay-200">
+                <h3 class="comparison-card-title">Showcase</h3>
+                <ul class="comparison-features">
+                    <li><span class="feature-icon check">✓</span> Auto-zoom on clicks</li>
+                    <li><span class="feature-icon check">✓</span> Custom webcam frames</li>
+                    <li><span class="feature-icon check">✓</span> Branded cursor styles</li>
+                    <li><span class="feature-icon check">✓</span> One-click export</li>
+                    <li><span class="feature-icon check">✓</span> Simple interface</li>
+                    <li><span class="feature-icon check">✓</span> Free + Premium</li>
+                </ul>
             </div>
 
-            <div class="comparison-row">
-                <div class="comparison-cell">Auto-zoom on clicks</div>
-                <div class="comparison-cell highlight"><span class="check">✓</span></div>
-                <div class="comparison-cell"><span class="cross">✗</span></div>
-                <div class="comparison-cell"><span class="cross">✗</span></div>
+            <!-- Generic Tools Card -->
+            <div class="comparison-card animate-on-scroll scale-in delay-300">
+                <h3 class="comparison-card-title">Generic Tools</h3>
+                <ul class="comparison-features">
+                    <li><span class="feature-icon cross">✗</span> Auto-zoom on clicks</li>
+                    <li><span class="feature-icon cross">✗</span> Custom webcam frames</li>
+                    <li><span class="feature-icon cross">✗</span> Branded cursor styles</li>
+                    <li><span class="feature-icon check">✓</span> One-click export</li>
+                    <li><span class="feature-icon check">✓</span> Simple interface</li>
+                    <li><span class="feature-icon check">✓</span> Free only</li>
+                </ul>
             </div>
 
-            <div class="comparison-row">
-                <div class="comparison-cell">Custom webcam frames</div>
-                <div class="comparison-cell highlight"><span class="check">✓</span></div>
-                <div class="comparison-cell"><span class="cross">✗</span></div>
-                <div class="comparison-cell"><span class="check">✓</span></div>
-            </div>
-
-            <div class="comparison-row">
-                <div class="comparison-cell">Branded cursor styles</div>
-                <div class="comparison-cell highlight"><span class="check">✓</span></div>
-                <div class="comparison-cell"><span class="cross">✗</span></div>
-                <div class="comparison-cell"><span class="cross">✗</span></div>
-            </div>
-
-            <div class="comparison-row">
-                <div class="comparison-cell">One-click export</div>
-                <div class="comparison-cell highlight"><span class="check">✓</span></div>
-                <div class="comparison-cell"><span class="check">✓</span></div>
-                <div class="comparison-cell"><span class="cross">✗</span></div>
-            </div>
-
-            <div class="comparison-row">
-                <div class="comparison-cell">Complexity</div>
-                <div class="comparison-cell highlight">Simple</div>
-                <div class="comparison-cell">Simple</div>
-                <div class="comparison-cell">Complex</div>
-            </div>
-
-            <div class="comparison-row">
-                <div class="comparison-cell">Price</div>
-                <div class="comparison-cell highlight">Free + Premium</div>
-                <div class="comparison-cell">Free</div>
-                <div class="comparison-cell">$$$</div>
+            <!-- Pro Tools Card -->
+            <div class="comparison-card animate-on-scroll scale-in delay-400">
+                <h3 class="comparison-card-title">Pro Tools</h3>
+                <ul class="comparison-features">
+                    <li><span class="feature-icon cross">✗</span> Auto-zoom on clicks</li>
+                    <li><span class="feature-icon check">✓</span> Custom webcam frames</li>
+                    <li><span class="feature-icon cross">✗</span> Branded cursor styles</li>
+                    <li><span class="feature-icon cross">✗</span> One-click export</li>
+                    <li><span class="feature-icon cross">✗</span> Complex interface</li>
+                    <li><span class="feature-icon cross">✗</span> Expensive ($$$)</li>
+                </ul>
             </div>
         </div>
     </section>
@@ -867,7 +1148,7 @@
     <!-- FEATURES -->
     <section class="features">
         <div class="section-header">
-            <h2>What you record matters. How it looks does too.</h2>
+            <h2 class="animate-on-scroll fade-in-up">What you record matters. How it looks does too.</h2>
         </div>
 
         <div class="feature-grid">
@@ -900,9 +1181,9 @@
     <!-- PRICING -->
     <section class="pricing" id="pricing">
         <div class="pricing-container">
-            <h2>Simple pricing. No overthinking.</h2>
+            <h2 class="animate-on-scroll fade-in-up">Simple pricing. No overthinking.</h2>
             
-            <p class="pricing-copy">Start free. Upgrade when you're ready.</p>
+            <p class="pricing-copy animate-on-scroll fade-in-up delay-100">Start free. Upgrade when you're ready.</p>
 
             <div class="pricing-cards">
                 <!-- FREE PLAN -->
@@ -959,16 +1240,18 @@
 
     <!-- FINAL CTA -->
     <section class="final-cta">
-        <h2>Be one of the first to record differently.</h2>
-        <div class="cta-container">
+        <h2 class="animate-on-scroll fade-in-up">Be one of the first to record differently.</h2>
+        <div class="cta-container animate-on-scroll fade-in-up delay-200">
             <a href="https://tally.so/r/D4p48Z" class="primary-cta" target="_blank">Join the Showcase waitlist</a>
             <p class="helper-text">Early access • Launch updates • That's it</p>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2026 Showcase. Made for people who care about the details.</p>
-        <p>Built by <a href="https://mariangasinu.com">Meg</a> • <a href="privacy.html">Privacy Policy</a></p>
+        <div class="footer-container">
+            <p>&copy; 2026 Showcase. Made for people who care about the details.</p>
+            <p>Built by <a href="https://mariangasinu.com">Meg</a> • <a href="privacy.html">Privacy Policy</a></p>
+        </div>
     </footer>
 
     <script>
@@ -1013,6 +1296,26 @@
                 </svg>
             `;
         }
+
+        // Scroll Animation Observer
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animated');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all elements with animate-on-scroll class
+        document.addEventListener('DOMContentLoaded', () => {
+            const animatedElements = document.querySelectorAll('.animate-on-scroll');
+            animatedElements.forEach(el => observer.observe(el));
+        });
     </script>
 </body>
 </html>
