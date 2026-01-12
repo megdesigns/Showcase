@@ -161,10 +161,17 @@
             align-items: center;
             gap: 0.75rem;
             color: var(--text);
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .logo:hover {
+            opacity: 0.8;
         }
 
         .logo img {
             height: 36px;
+            display: block;
         }
 
         .header-right {
@@ -711,10 +718,10 @@
             color: var(--bg);
         }
 
-        /* Blurred features - SWEET SPOT */
+        /* Blurred features - LIGHTER BUT HIDES PRICE */
         .feature-blurred {
-            filter: blur(10px);
-            opacity: 0.35;
+            filter: blur(8px);
+            opacity: 0.4;
             user-select: none;
             pointer-events: none;
         }
@@ -1038,10 +1045,10 @@
 <body>
     <header>
         <div class="header-container">
-            <div class="logo">
+            <a href="#" class="logo">
                 <img src="https://raw.githubusercontent.com/megdesigns/Showcase/main/photos/showcaselogo.png" alt="Showcase Logo">
                 Showcase
-            </div>
+            </a>
             <div class="header-right">
                 <div class="mac-label">macOS</div>
                 <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
