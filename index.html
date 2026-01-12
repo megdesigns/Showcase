@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Showcase - Screen Recordings That Show Off</title>
-    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -16,123 +16,177 @@
             --bg: #FAFAF9;
             --text: #1A1A1A;
             --text-muted: #666666;
-            --accent: #2D6CDF;
+            --accent: #000000;
             --border: #E5E5E5;
             --card-bg: #FFFFFF;
+        }
+
+        [data-theme="dark"] {
+            --bg: #0A0A0A;
+            --text: #FAFAF9;
+            --text-muted: #999999;
+            --accent: #FFFFFF;
+            --border: #2A2A2A;
+            --card-bg: #141414;
         }
 
         body {
             font-family: 'DM Sans', sans-serif;
             background: var(--bg);
             color: var(--text);
-            line-height: 1.6;
+            line-height: 1.5;
             overflow-x: hidden;
+            transition: background 0.3s ease, color 0.3s ease;
         }
 
         /* Header */
         header {
             padding: 2rem 4rem;
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid var(--border);
-            background: var(--card-bg);
+            border-bottom: 2px solid var(--border);
+            background: var(--bg);
             position: sticky;
             top: 0;
             z-index: 100;
-            backdrop-filter: blur(10px);
         }
 
         .logo {
             font-family: 'Crimson Pro', serif;
-            font-size: 1.8rem;
-            font-weight: 600;
+            font-size: 2rem;
+            font-weight: 700;
             letter-spacing: -0.02em;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--text);
         }
 
-        .header-cta {
-            background: var(--text);
-            color: var(--bg);
-            padding: 0.7rem 1.5rem;
+        .logo img {
+            height: 36px;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .theme-toggle {
+            background: var(--card-bg);
+            border: 2px solid var(--border);
+            padding: 0.6rem;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 42px;
+            height: 42px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .theme-toggle:hover {
+            border-color: var(--text);
+            transform: translateY(-2px) rotate(15deg);
+        }
+
+        .theme-icon {
+            width: 20px;
+            height: 20px;
+            transition: transform 0.3s;
+        }
+
+        .theme-icon svg {
+            width: 100%;
+            height: 100%;
+            stroke: var(--text);
+        }
+
+        .mac-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            padding: 0.6rem 1.2rem;
+            border: 2px solid var(--border);
             border-radius: 2rem;
-            text-decoration: none;
-            font-weight: 500;
-            transition: transform 0.2s, box-shadow 0.3s;
         }
 
-        .header-cta:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-
-        /* Hero Section */
+        /* Hero */
         .hero {
-            padding: 8rem 4rem 4rem;
-            max-width: 1400px;
+            padding: 8rem 4rem 6rem;
+            max-width: 1600px;
             margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
+            min-height: 85vh;
         }
 
         .hero-content {
-            max-width: 680px;
-            margin: 0 auto 4rem;
-            text-align: center;
+            max-width: 600px;
         }
 
         .hero-content h1 {
             font-family: 'Crimson Pro', serif;
-            font-size: 5rem;
-            font-weight: 600;
-            line-height: 1.1;
-            letter-spacing: -0.03em;
-            margin-bottom: 1.5rem;
-            animation: fadeInUp 0.8s ease-out;
+            font-size: 6.5rem;
+            font-weight: 700;
+            line-height: 0.95;
+            letter-spacing: -0.05em;
+            margin-bottom: 2rem;
+            color: var(--text);
         }
 
         .hero-content .subtitle {
-            font-size: 1.3rem;
+            font-size: 1.5rem;
             color: var(--text-muted);
-            line-height: 1.7;
-            margin-bottom: 2.5rem;
-            animation: fadeInUp 0.8s ease-out 0.2s both;
+            line-height: 1.6;
+            margin-bottom: 3rem;
+            font-weight: 400;
         }
 
         .cta-container {
             display: flex;
             flex-direction: column;
-            align-items: center;
-            gap: 0.75rem;
-            animation: fadeInUp 0.8s ease-out 0.4s both;
+            align-items: flex-start;
+            gap: 1rem;
         }
 
         .primary-cta {
             background: var(--text);
             color: var(--bg);
-            padding: 1rem 2.5rem;
-            border-radius: 2rem;
+            padding: 1.2rem 3rem;
+            border: 3px solid var(--text);
+            border-radius: 3rem;
             text-decoration: none;
-            font-weight: 500;
-            font-size: 1.05rem;
-            border: 2px solid var(--text);
-            transition: transform 0.2s, box-shadow 0.3s;
-            text-align: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+            letter-spacing: 0.02em;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
             display: inline-block;
-            width: fit-content;
         }
 
         .primary-cta:hover {
-            transform: translateY(-2px);
+            background: transparent;
+            color: var(--text);
+            transform: translateY(-3px);
             box-shadow: 0 8px 24px rgba(0,0,0,0.15);
         }
 
         .helper-text {
             font-size: 0.9rem;
             color: var(--text-muted);
+            font-weight: 500;
         }
 
-        /* UI Showcase Section */
+        /* UI Showcase */
         .ui-showcase {
-            margin-top: 4rem;
-            animation: fadeInUp 0.8s ease-out 0.6s both;
+            position: relative;
         }
 
         .ui-images {
@@ -145,281 +199,387 @@
             position: relative;
             width: 100%;
             aspect-ratio: 16/10;
-            border-radius: 1rem;
             overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.12);
-            border: 1px solid var(--border);
+            border: 3px solid var(--border);
+            border-radius: 1rem;
         }
 
         .ui-image-container img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .ui-image-container:hover img {
+            transform: scale(1.02);
         }
 
         .ui-label {
             position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-            padding: 0.4rem 1rem;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: var(--bg);
+            border: 3px solid var(--text);
+            padding: 0.75rem 1.5rem;
             border-radius: 2rem;
-            font-size: 0.85rem;
-            font-weight: 500;
-            border: 1px solid var(--border);
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text);
         }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
 
         /* Problem Section */
         .problem-section {
-            padding: 8rem 4rem;
-            background: white;
-            border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
+            padding: 10rem 4rem;
+            border-top: 3px solid var(--border);
+            border-bottom: 3px solid var(--border);
+            background: var(--card-bg);
         }
 
         .problem-container {
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
             text-align: center;
         }
 
         .problem-container h2 {
             font-family: 'Crimson Pro', serif;
-            font-size: 3.5rem;
-            font-weight: 600;
-            line-height: 1.2;
-            letter-spacing: -0.02em;
-            margin-bottom: 1.5rem;
+            font-size: 4.5rem;
+            font-weight: 700;
+            line-height: 1.15;
+            letter-spacing: -0.03em;
+            margin-bottom: 2rem;
+            color: var(--text);
         }
 
         .problem-container p {
-            font-size: 1.3rem;
+            font-size: 1.5rem;
             color: var(--text-muted);
-            line-height: 1.7;
+            line-height: 1.6;
+            font-weight: 500;
         }
 
-
-        /* Features Section */
-        .features {
+        /* Comparison Table */
+        .comparison-section {
             padding: 8rem 4rem;
             max-width: 1400px;
             margin: 0 auto;
         }
 
+        .comparison-header {
+            margin-bottom: 4rem;
+            border-bottom: 3px solid var(--text);
+            padding-bottom: 2rem;
+        }
+
+        .comparison-header h2 {
+            font-family: 'Crimson Pro', serif;
+            font-size: 4rem;
+            font-weight: 700;
+            letter-spacing: -0.04em;
+            text-transform: uppercase;
+            color: var(--text);
+            margin-bottom: 1rem;
+        }
+
+        .comparison-header p {
+            font-size: 1.3rem;
+            color: var(--text-muted);
+        }
+
+        .comparison-table {
+            border: 3px solid var(--border);
+            border-radius: 1rem;
+            overflow: hidden;
+        }
+
+        .comparison-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .comparison-row:last-child {
+            border-bottom: none;
+        }
+
+        .comparison-row.header {
+            background: var(--card-bg);
+            font-weight: 700;
+        }
+
+        .comparison-cell {
+            padding: 2rem 1.5rem;
+            border-right: 2px solid var(--border);
+            color: var(--text);
+            transition: background 0.3s;
+        }
+
+        .comparison-cell:last-child {
+            border-right: none;
+        }
+
+        .comparison-row:not(.header) .comparison-cell:first-child {
+            font-weight: 600;
+        }
+
+        .comparison-cell.highlight {
+            background: var(--text);
+            color: var(--bg);
+            font-weight: 700;
+        }
+
+        [data-theme="dark"] .comparison-cell.highlight {
+            background: var(--text);
+            color: var(--bg);
+        }
+
+        .comparison-row:not(.header):hover {
+            background: var(--card-bg);
+        }
+
+        .check {
+            color: #10B981;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        [data-theme="dark"] .check {
+            color: #34D399;
+        }
+
+        .cross {
+            color: #EF4444;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        [data-theme="dark"] .cross {
+            color: #F87171;
+        }
+
+        /* Features */
+        .features {
+            padding: 8rem 4rem;
+            max-width: 1800px;
+            margin: 0 auto;
+        }
+
         .section-header {
-            text-align: center;
-            margin-bottom: 5rem;
+            margin-bottom: 6rem;
+            border-bottom: 3px solid var(--text);
+            padding-bottom: 2rem;
         }
 
         .section-header h2 {
             font-family: 'Crimson Pro', serif;
-            font-size: 3.5rem;
-            font-weight: 600;
-            letter-spacing: -0.02em;
+            font-size: 5rem;
+            font-weight: 700;
+            letter-spacing: -0.04em;
+            text-transform: uppercase;
+            color: var(--text);
         }
 
         .feature-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 3rem;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+            border: 3px solid var(--border);
         }
 
         .feature-card {
-            background: white;
-            padding: 3rem;
-            border-radius: 1rem;
-            border: 1px solid var(--border);
-            transition: transform 0.3s, box-shadow 0.3s;
+            padding: 4rem 3rem;
+            border-right: 3px solid var(--border);
+            transition: all 0.3s ease;
+            background: var(--bg);
+        }
+
+        .feature-card:last-child {
+            border-right: none;
         }
 
         .feature-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+            background: var(--card-bg);
+            transform: scale(1.05);
+            z-index: 10;
+        }
+
+        .feature-number {
+            font-family: 'Crimson Pro', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            line-height: 1;
         }
 
         .feature-card h3 {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             margin-bottom: 1rem;
-            font-weight: 600;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--text);
         }
 
         .feature-card p {
             color: var(--text-muted);
-            line-height: 1.7;
+            line-height: 1.6;
+            font-size: 1rem;
         }
 
-
-
-        /* Pricing Section */
+        /* Pricing */
         .pricing {
             padding: 8rem 4rem;
             background: var(--card-bg);
-            border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
+            border-top: 3px solid var(--border);
         }
 
         .pricing-container {
-            max-width: 1000px;
+            max-width: 1600px;
             margin: 0 auto;
         }
 
         .pricing h2 {
             font-family: 'Crimson Pro', serif;
-            font-size: 3.5rem;
-            font-weight: 600;
-            letter-spacing: -0.02em;
-            text-align: center;
-            margin-bottom: 1.5rem;
+            font-size: 5rem;
+            font-weight: 700;
+            letter-spacing: -0.04em;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            border-bottom: 3px solid var(--text);
+            padding-bottom: 2rem;
+            color: var(--text);
         }
 
         .pricing-copy {
-            text-align: center;
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             color: var(--text-muted);
-            margin-bottom: 3rem;
-            line-height: 1.8;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .pricing-copy strong {
-            color: var(--text);
+            margin-bottom: 4rem;
+            line-height: 1.7;
+            font-weight: 500;
         }
 
         .pricing-cards {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
-            margin-top: 4rem;
         }
 
         .pricing-card {
-            padding: 3rem;
-            border-radius: 1rem;
-            border: 2px solid var(--border);
-            transition: border-color 0.3s, transform 0.3s;
+            padding: 3.5rem 3rem;
+            border: 3px solid var(--border);
+            border-radius: 1.5rem;
+            transition: all 0.3s ease;
+            background: var(--bg);
         }
 
         .pricing-card:hover {
             border-color: var(--text);
-            transform: translateY(-4px);
+            transform: translateY(-8px);
+            box-shadow: 0 16px 48px rgba(0,0,0,0.12);
         }
 
         .pricing-card.featured {
-            border-color: var(--text);
             background: var(--text);
             color: var(--bg);
+            border-color: var(--text);
         }
 
         .pricing-card.featured h3,
-        .pricing-card.featured p {
+        .pricing-card.featured p,
+        .pricing-card.featured li,
+        .pricing-card.featured .plan-name {
             color: var(--bg);
+        }
+
+        .plan-name {
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 2rem;
+            font-weight: 700;
+            color: var(--text-muted);
+        }
+
+        .pricing-card.featured .plan-name {
+            color: rgba(250, 250, 249, 0.8);
+        }
+
+        .price {
+            font-family: 'Crimson Pro', serif;
+            font-size: 5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            line-height: 1;
+            color: var(--text);
         }
 
         .pricing-card.featured .price {
             color: var(--bg);
         }
 
-        .plan-name {
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 1rem;
-            color: var(--text-muted);
-        }
-
-        .pricing-card.featured .plan-name {
-            color: rgba(255,255,255,0.7);
-        }
-
-        .price {
-            font-family: 'Crimson Pro', serif;
-            font-size: 3.5rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            filter: blur(8px);
-            user-select: none;
+        .price.free {
+            font-size: 3rem;
         }
 
         .price-period {
-            font-size: 1rem;
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            font-weight: 600;
             color: var(--text-muted);
-            margin-bottom: 2rem;
-            filter: blur(6px);
-            user-select: none;
         }
 
         .pricing-card.featured .price-period {
-            color: rgba(255,255,255,0.7);
+            color: rgba(250, 250, 249, 0.8);
         }
 
         .pricing-features {
             list-style: none;
-            margin-bottom: 2rem;
+            margin-bottom: 3rem;
         }
 
         .pricing-features li {
-            padding: 0.7rem 0;
-            border-bottom: 1px solid var(--border);
+            padding: 1rem 0;
+            border-bottom: 2px solid var(--border);
+            font-weight: 500;
+            color: var(--text);
+            position: relative;
         }
 
         .pricing-card.featured .pricing-features li {
-            border-bottom-color: rgba(255,255,255,0.2);
+            border-bottom-color: rgba(250, 250, 249, 0.3);
+            color: var(--bg);
+        }
+
+        /* Blurred features - SWEET SPOT */
+        .feature-blurred {
+            filter: blur(10px);
+            opacity: 0.35;
+            user-select: none;
+            pointer-events: none;
         }
 
         .pricing-btn {
             width: 100%;
-            padding: 1rem;
-            border-radius: 2rem;
-            border: 2px solid var(--text);
+            padding: 1.2rem;
+            border: 3px solid var(--text);
+            border-radius: 3rem;
             background: transparent;
-            font-weight: 500;
+            font-weight: 700;
             cursor: pointer;
             transition: all 0.3s;
             font-size: 1rem;
-            position: relative;
-        }
-
-        .pricing-btn::after {
-            content: 'Coming Soon';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            opacity: 0;
-            transition: opacity 0.3s;
-            font-weight: 600;
-        }
-
-        .pricing-btn:hover::after {
-            opacity: 1;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text);
         }
 
         .pricing-btn:hover {
             background: var(--text);
             color: var(--bg);
-        }
-
-        .pricing-btn span {
-            transition: opacity 0.3s;
-        }
-
-        .pricing-btn:hover span {
-            opacity: 0;
+            transform: translateY(-2px);
         }
 
         .pricing-card.featured .pricing-btn {
@@ -428,67 +588,115 @@
             border-color: var(--bg);
         }
 
-        .pricing-card.featured .pricing-btn::after {
-            color: var(--bg);
-        }
-
         .pricing-card.featured .pricing-btn:hover {
             background: transparent;
             color: var(--bg);
+            border-color: var(--bg);
         }
-
-        .pricing-card.featured .pricing-btn:hover::after {
-            color: var(--bg);
-        }
-
 
         /* Final CTA */
         .final-cta {
-            padding: 8rem 4rem;
+            padding: 10rem 4rem;
             background: var(--bg);
             text-align: center;
+            border-top: 3px solid var(--border);
         }
 
         .final-cta h2 {
             font-family: 'Crimson Pro', serif;
-            font-size: 4rem;
-            font-weight: 600;
-            letter-spacing: -0.02em;
-            margin-bottom: 2rem;
+            font-size: 6rem;
+            font-weight: 700;
+            letter-spacing: -0.04em;
+            margin-bottom: 3rem;
+            text-transform: uppercase;
             color: var(--text);
         }
 
-        .final-cta .cta-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
         .final-cta .primary-cta {
-            font-size: 1.15rem;
-            padding: 1.2rem 3rem;
+            font-size: 1.2rem;
+            padding: 1.5rem 4rem;
         }
-
-        .final-cta .helper-text {
-            color: var(--text-muted);
-        }
-
 
         /* Footer */
         footer {
             padding: 4rem;
             text-align: center;
             color: var(--text-muted);
-            background: white;
-            border-top: 1px solid var(--border);
+            background: var(--card-bg);
+            border-top: 3px solid var(--border);
+            font-size: 0.9rem;
         }
 
         footer p {
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        footer a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 700;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.2s;
+        }
+
+        footer a:hover {
+            border-bottom-color: var(--text);
         }
 
         /* Responsive */
+        @media (max-width: 1400px) {
+            .feature-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .feature-card {
+                border-right: 3px solid var(--border);
+                border-bottom: 3px solid var(--border);
+            }
+
+            .feature-card:nth-child(2n) {
+                border-right: none;
+            }
+
+            .feature-card:nth-last-child(-n+2) {
+                border-bottom: none;
+            }
+
+            .comparison-row {
+                grid-template-columns: 2fr 1fr 1fr 1fr;
+                font-size: 0.9rem;
+            }
+
+            .comparison-cell {
+                padding: 1.5rem 1rem;
+            }
+        }
+
+        @media (max-width: 1200px) {
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 4rem;
+                padding: 6rem 2rem;
+            }
+
+            .hero-content h1 {
+                font-size: 4.5rem;
+            }
+
+            .ui-images {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .comparison-table {
+                overflow-x: auto;
+            }
+        }
+
         @media (max-width: 768px) {
             header {
                 padding: 1.5rem 2rem;
@@ -498,40 +706,42 @@
                 font-size: 1.5rem;
             }
 
-            .hero {
-                padding: 4rem 2rem 2rem;
-            }
-
             .hero-content h1 {
                 font-size: 3rem;
             }
 
-            .hero-content .subtitle {
-                font-size: 1.1rem;
-            }
-
-            .ui-images {
+            .feature-grid {
                 grid-template-columns: 1fr;
             }
 
-            .problem-section,
-            .who-section,
-            .features,
-            .pricing,
-            .final-cta {
-                padding: 4rem 2rem;
+            .feature-card {
+                border-right: none;
+                border-bottom: 3px solid var(--border);
+            }
+
+            .feature-card:last-child {
+                border-bottom: none;
             }
 
             .problem-container h2,
-            .who-container h2,
             .section-header h2,
             .pricing h2,
-            .final-cta h2 {
+            .final-cta h2,
+            .comparison-header h2 {
                 font-size: 2.5rem;
             }
 
-            .feature-grid {
+            .comparison-row {
                 grid-template-columns: 1fr;
+            }
+
+            .comparison-cell {
+                border-right: none;
+                border-bottom: 2px solid var(--border);
+            }
+
+            .comparison-cell:last-child {
+                border-bottom: none;
             }
         }
     </style>
@@ -539,8 +749,26 @@
 <body>
     <header>
         <div class="logo">
-            <img src="https://raw.githubusercontent.com/megdesigns/Showcase/main/photos/showcaselogo.png" alt="Showcase Logo" style="height: 32px; margin-right: 8px;">
+            <img src="https://raw.githubusercontent.com/megdesigns/Showcase/main/photos/showcaselogo.png" alt="Showcase Logo">
             Showcase
+        </div>
+        <div class="header-right">
+            <div class="mac-label">macOS</div>
+            <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+                <span class="theme-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </span>
+            </button>
         </div>
     </header>
 
@@ -555,7 +783,6 @@
             </div>
         </div>
 
-        <!-- UI Showcase with Dark & Light Mode -->
         <div class="ui-showcase">
             <div class="ui-images">
                 <div class="ui-image-container">
@@ -570,11 +797,70 @@
         </div>
     </section>
 
-    <!-- PROBLEM SECTION -->
+    <!-- PROBLEM -->
     <section class="problem-section">
         <div class="problem-container">
             <h2>Your work is thoughtful. Your screen recordings shouldn't look generic.</h2>
             <p>Showcase lets you record with intention — so your videos feel designed, not default.</p>
+        </div>
+    </section>
+
+    <!-- COMPARISON TABLE -->
+    <section class="comparison-section">
+        <div class="comparison-header">
+            <h2>How Showcase compares</h2>
+            <p>See how we stack up against other tools</p>
+        </div>
+
+        <div class="comparison-table">
+            <div class="comparison-row header">
+                <div class="comparison-cell">Feature</div>
+                <div class="comparison-cell highlight">Showcase</div>
+                <div class="comparison-cell">Generic Tools</div>
+                <div class="comparison-cell">Pro Tools</div>
+            </div>
+
+            <div class="comparison-row">
+                <div class="comparison-cell">Auto-zoom on clicks</div>
+                <div class="comparison-cell highlight"><span class="check">✓</span></div>
+                <div class="comparison-cell"><span class="cross">✗</span></div>
+                <div class="comparison-cell"><span class="cross">✗</span></div>
+            </div>
+
+            <div class="comparison-row">
+                <div class="comparison-cell">Custom webcam frames</div>
+                <div class="comparison-cell highlight"><span class="check">✓</span></div>
+                <div class="comparison-cell"><span class="cross">✗</span></div>
+                <div class="comparison-cell"><span class="check">✓</span></div>
+            </div>
+
+            <div class="comparison-row">
+                <div class="comparison-cell">Branded cursor styles</div>
+                <div class="comparison-cell highlight"><span class="check">✓</span></div>
+                <div class="comparison-cell"><span class="cross">✗</span></div>
+                <div class="comparison-cell"><span class="cross">✗</span></div>
+            </div>
+
+            <div class="comparison-row">
+                <div class="comparison-cell">One-click export</div>
+                <div class="comparison-cell highlight"><span class="check">✓</span></div>
+                <div class="comparison-cell"><span class="check">✓</span></div>
+                <div class="comparison-cell"><span class="cross">✗</span></div>
+            </div>
+
+            <div class="comparison-row">
+                <div class="comparison-cell">Complexity</div>
+                <div class="comparison-cell highlight">Simple</div>
+                <div class="comparison-cell">Simple</div>
+                <div class="comparison-cell">Complex</div>
+            </div>
+
+            <div class="comparison-row">
+                <div class="comparison-cell">Price</div>
+                <div class="comparison-cell highlight">Free + Premium</div>
+                <div class="comparison-cell">Free</div>
+                <div class="comparison-cell">$$$</div>
+            </div>
         </div>
     </section>
 
@@ -586,70 +872,93 @@
 
         <div class="feature-grid">
             <div class="feature-card">
+                <div class="feature-number">01</div>
                 <h3>Smart Auto-Zoom</h3>
                 <p>Zoom follows your clicks and movement — like the tutorials you actually admire.</p>
             </div>
 
             <div class="feature-card">
+                <div class="feature-number">02</div>
                 <h3>Custom Cursors & Click Styles</h3>
                 <p>Change color, size, and animation to match your personal brand.</p>
             </div>
 
             <div class="feature-card">
+                <div class="feature-number">03</div>
                 <h3>Branded Webcam Frames</h3>
                 <p>Choose shapes, styles, and placement that feel intentional.</p>
             </div>
 
             <div class="feature-card">
+                <div class="feature-number">04</div>
                 <h3>Effortless Export & Sharing</h3>
                 <p>No editing gymnastics. Record → export → share.</p>
             </div>
         </div>
     </section>
 
-    <!-- PRICING TEASER -->
+    <!-- PRICING -->
     <section class="pricing" id="pricing">
         <div class="pricing-container">
-            <div class="section-header">
-                <h2>Simple pricing. No overthinking.</h2>
-            </div>
+            <h2>Simple pricing. No overthinking.</h2>
             
-            <p class="pricing-copy">Early users on the waitlist get priority access and launch perks.</p>
+            <p class="pricing-copy">Start free. Upgrade when you're ready.</p>
 
             <div class="pricing-cards">
+                <!-- FREE PLAN -->
                 <div class="pricing-card">
-                    <div class="plan-name">Monthly</div>
-                    <div class="price">$5</div>
-                    <div class="price-period">per month</div>
+                    <div class="plan-name">Free</div>
+                    <div class="price free">$0</div>
+                    <div class="price-period">forever</div>
                     <ul class="pricing-features">
-                        <li>Unlimited recordings</li>
-                        <li>All customization features</li>
-                        <li>Export in HD</li>
-                        <li>Auto-zoom & tracking</li>
-                        <li>Custom frames & cursors</li>
+                        <li>Screen recording</li>
+                        <li>3 webcam frames</li>
+                        <li>Basic cursor</li>
+                        <li>720p export</li>
+                        <li>Click animations</li>
                     </ul>
-                    <button class="pricing-btn"><span>Start Free Trial</span></button>
+                    <button class="pricing-btn">Get Started</button>
                 </div>
 
+                <!-- MONTHLY PLAN -->
+                <div class="pricing-card">
+                    <div class="plan-name">Monthly</div>
+                    <div class="price feature-blurred">$5</div>
+                    <div class="price-period feature-blurred">per month</div>
+                    <ul class="pricing-features">
+                        <li>Everything in Free</li>
+                        <li>Smart auto-zoom</li>
+                        <li>All 7 webcam frames</li>
+                        <li class="feature-blurred">Custom cursors</li>
+                        <li class="feature-blurred">HD export</li>
+                        <li class="feature-blurred">Unlimited recording</li>
+                        <li class="feature-blurred">Priority support</li>
+                    </ul>
+                    <button class="pricing-btn">Coming Soon</button>
+                </div>
+
+                <!-- LIFETIME PLAN -->
                 <div class="pricing-card featured">
                     <div class="plan-name">Lifetime</div>
-                    <div class="price">$75</div>
-                    <div class="price-period">one-time payment</div>
+                    <div class="price feature-blurred">$75</div>
+                    <div class="price-period feature-blurred">one-time</div>
                     <ul class="pricing-features">
-                        <li>Everything in Monthly</li>
-                        <li>Lifetime updates</li>
-                        <li>Priority support</li>
-                        <li>Early access to features</li>
-                        <li>One-time payment</li>
+                        <li>Everything in Free</li>
+                        <li>Smart auto-zoom</li>
+                        <li>All 7 webcam frames</li>
+                        <li class="feature-blurred">Lifetime updates</li>
+                        <li class="feature-blurred">Priority support</li>
+                        <li class="feature-blurred">Early features</li>
+                        <li class="feature-blurred">Pay once, own forever</li>
                     </ul>
-                    <button class="pricing-btn"><span>Get Lifetime Access</span></button>
+                    <button class="pricing-btn">Coming Soon</button>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- FINAL CTA -->
-    <section class="final-cta" id="waitlist">
+    <section class="final-cta">
         <h2>Be one of the first to record differently.</h2>
         <div class="cta-container">
             <a href="https://tally.so/r/D4p48Z" class="primary-cta" target="_blank">Join the Showcase waitlist</a>
@@ -659,7 +968,51 @@
 
     <footer>
         <p>&copy; 2026 Showcase. Made for people who care about the details.</p>
-        <p>Built by <a href="https://mariangasinu.com" style="color: var(--text);">Meg</a> • <a href="privacy.html" style="color: var(--text);">Privacy Policy</a></p>
+        <p>Built by <a href="https://mariangasinu.com">Meg</a> • <a href="privacy.html">Privacy Policy</a></p>
     </footer>
+
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            const themeIcon = document.querySelector('.theme-icon');
+            const currentTheme = html.getAttribute('data-theme');
+            
+            if (currentTheme === 'dark') {
+                html.removeAttribute('data-theme');
+                themeIcon.innerHTML = `
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                `;
+                localStorage.setItem('theme', 'light');
+            } else {
+                html.setAttribute('data-theme', 'dark');
+                themeIcon.innerHTML = `
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                `;
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            document.querySelector('.theme-icon').innerHTML = `
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            `;
+        }
+    </script>
 </body>
 </html>
