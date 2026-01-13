@@ -21,17 +21,60 @@
             --card-bg: #FFFFFF;
         }
 
+        [data-theme="dark"] {
+            --bg: #1A1A1A;
+            --text: #FAFAF9;
+            --text-muted: #999999;
+            --border: #333333;
+            --card-bg: #333333;
+        }
+
         body {
             font-family: 'DM Sans', sans-serif;
             background: var(--bg);
             color: var(--text);
             line-height: 1.6;
             overflow-x: hidden;
-            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%231A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/></svg>') 12 12, auto;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        /* Custom Animated Cursor */
+        .custom-cursor {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--text);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: all 0.15s ease;
+            transform: translate(-50%, -50%);
+            mix-blend-mode: difference;
+        }
+
+        .custom-cursor.hover {
+            width: 40px;
+            height: 40px;
+            background: var(--text);
+            opacity: 0.3;
+        }
+
+        /* Fallback cursors */
+        * {
+            cursor: none;
         }
 
         a, button {
-            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="8" fill="%231A1A1A"/></svg>') 16 16, pointer;
+            cursor: none;
+        }
+
+        @media (hover: none) {
+            * {
+                cursor: auto;
+            }
+            .custom-cursor {
+                display: none;
+            }
         }
 
         /* Header */
@@ -63,6 +106,19 @@
             letter-spacing: -0.02em;
             display: flex;
             align-items: center;
+            text-decoration: none;
+            color: var(--text);
+            transition: opacity 0.3s;
+        }
+
+        .logo:hover {
+            opacity: 0.7;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
         }
 
         .mac-label {
@@ -73,6 +129,36 @@
             padding: 0.5rem 1rem;
             border: 2px solid var(--border);
             border-radius: 2rem;
+        }
+
+        .theme-toggle {
+            background: var(--card-bg);
+            border: 2px solid var(--border);
+            padding: 0.5rem;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 38px;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .theme-toggle:hover {
+            border-color: var(--text);
+            transform: translateY(-2px) rotate(15deg);
+        }
+
+        .theme-icon {
+            width: 18px;
+            height: 18px;
+        }
+
+        .theme-icon svg {
+            width: 100%;
+            height: 100%;
+            stroke: var(--text);
         }
 
         /* Hero Section */
@@ -90,7 +176,7 @@
 
         .hero-content h1 {
             font-family: 'Crimson Pro', serif;
-            font-size: 4.5rem;
+            font-size: 6.5rem;
             font-weight: 600;
             line-height: 1.05;
             letter-spacing: -0.03em;
@@ -123,7 +209,7 @@
             font-weight: 500;
             font-size: 1.05rem;
             border: 2px solid var(--text);
-            transition: transform 0.2s, box-shadow 0.3s;
+            transition: all 0.3s;
             text-align: center;
             display: inline-block;
             width: fit-content;
@@ -131,6 +217,8 @@
 
         .primary-cta:hover {
             transform: translateY(-2px);
+            background: var(--bg);
+            color: var(--text);
             box-shadow: 0 8px 24px rgba(0,0,0,0.15);
         }
 
@@ -171,13 +259,14 @@
             position: absolute;
             top: 1rem;
             right: 1rem;
-            background: rgba(255, 255, 255, 0.9);
+            background: var(--card-bg);
             backdrop-filter: blur(10px);
             padding: 0.4rem 1rem;
             border-radius: 2rem;
             font-size: 0.85rem;
             font-weight: 500;
             border: 1px solid var(--border);
+            color: var(--text);
         }
 
         @keyframes fadeInUp {
@@ -228,7 +317,7 @@
         /* Problem Section */
         .problem-section {
             padding: 8rem 4rem;
-            background: white;
+            background: var(--card-bg);
             border-top: 1px solid var(--border);
             border-bottom: 1px solid var(--border);
         }
@@ -241,7 +330,7 @@
 
         .problem-container h2 {
             font-family: 'Crimson Pro', serif;
-            font-size: 4.5rem;
+            font-size: 5rem;
             font-weight: 600;
             line-height: 1.15;
             letter-spacing: -0.03em;
@@ -268,7 +357,7 @@
 
         .comparison-header h2 {
             font-family: 'Crimson Pro', serif;
-            font-size: 4.5rem;
+            font-size: 3.5rem;
             font-weight: 600;
             letter-spacing: -0.03em;
             margin-bottom: 1rem;
@@ -289,8 +378,9 @@
             border: 2px solid var(--border);
             border-radius: 1rem;
             padding: 2.5rem 2rem;
-            background: white;
+            background: var(--card-bg);
             transition: all 0.3s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
         }
 
         .comparison-card:hover {
@@ -355,6 +445,19 @@
             color: #34D399;
         }
 
+        [data-theme="dark"] .comparison-card.featured {
+            background: var(--text);
+            color: var(--bg);
+        }
+
+        [data-theme="dark"] .feature-icon.check {
+            color: #34D399;
+        }
+
+        [data-theme="dark"] .feature-icon.cross {
+            color: #F87171;
+        }
+
         /* Features Section - MAGAZINE STYLE */
         .features {
             padding: 8rem 4rem;
@@ -369,7 +472,7 @@
 
         .section-header h2 {
             font-family: 'Crimson Pro', serif;
-            font-size: 4.5rem;
+            font-size: 5rem;
             font-weight: 600;
             letter-spacing: -0.03em;
         }
@@ -378,13 +481,14 @@
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 0;
-            border: 3px solid var(--border);
+            border: 2px solid var(--border);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
         }
 
         .feature-card {
             padding: 3rem 2.5rem;
-            border-right: 3px solid var(--border);
-            background: white;
+            border-right: 2px solid var(--border);
+            background: var(--card-bg);
             transition: all 0.3s;
         }
 
@@ -441,7 +545,7 @@
 
         .pricing h2 {
             font-family: 'Crimson Pro', serif;
-            font-size: 4.5rem;
+            font-size: 5rem;
             font-weight: 600;
             letter-spacing: -0.03em;
             text-align: center;
@@ -467,17 +571,19 @@
         }
 
         .pricing-card {
-            padding: 2.5rem;
+            padding: 2rem 1.5rem;
             border-radius: 1rem;
             border: 2px solid var(--border);
             transition: border-color 0.3s, transform 0.3s;
             display: flex;
             flex-direction: column;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
         }
 
         .pricing-card:hover {
             border-color: var(--text);
             transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
         }
 
         .pricing-card.featured {
@@ -499,7 +605,7 @@
             font-size: 0.9rem;
             text-transform: uppercase;
             letter-spacing: 0.1em;
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
             color: var(--text-muted);
         }
 
@@ -509,7 +615,7 @@
 
         .price {
             font-family: 'Crimson Pro', serif;
-            font-size: 3rem;
+            font-size: 2.5rem;
             font-weight: 600;
             margin-bottom: 0.5rem;
             filter: blur(10px);
@@ -519,7 +625,7 @@
         .price-period {
             font-size: 1rem;
             color: var(--text-muted);
-            margin-bottom: 2rem;
+            margin-bottom: 1.2rem;
             filter: blur(8px);
             user-select: none;
         }
@@ -530,12 +636,12 @@
 
         .pricing-features {
             list-style: none;
-            margin-bottom: 2rem;
+            margin-bottom: 1rem;
             flex-grow: 1;
         }
 
         .pricing-features li {
-            padding: 0.6rem 0;
+            padding: 0.5rem 0;
             border-bottom: 1px solid var(--border);
             font-size: 0.95rem;
         }
@@ -556,7 +662,8 @@
             padding: 1rem;
             border-radius: 2rem;
             border: 2px solid var(--text);
-            background: transparent;
+            background: var(--text);
+            color: var(--bg);
             font-weight: 500;
             cursor: pointer;
             transition: all 0.3s;
@@ -565,32 +672,10 @@
             margin-top: auto;
         }
 
-        .pricing-btn::after {
-            content: 'Coming Soon';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            opacity: 0;
-            transition: opacity 0.3s;
-            font-weight: 600;
-        }
-
-        .pricing-btn:hover::after {
-            opacity: 1;
-        }
-
         .pricing-btn:hover {
-            background: var(--text);
-            color: var(--bg);
-        }
-
-        .pricing-btn span {
-            transition: opacity 0.3s;
-        }
-
-        .pricing-btn:hover span {
-            opacity: 0;
+            background: var(--bg);
+            color: var(--text);
+            transform: translateY(-2px);
         }
 
         .pricing-card.featured .pricing-btn {
@@ -599,17 +684,32 @@
             border-color: var(--bg);
         }
 
-        .pricing-card.featured .pricing-btn::after {
-            color: var(--bg);
-        }
-
         .pricing-card.featured .pricing-btn:hover {
-            background: transparent;
+            background: var(--text);
             color: var(--bg);
+            border-color: var(--text);
         }
 
-        .pricing-card.featured .pricing-btn:hover::after {
+        [data-theme="dark"] .feature-grid {
+            border-color: #444444;
+        }
+
+        [data-theme="dark"] .feature-card {
+            border-right-color: #444444;
+        }
+
+        [data-theme="dark"] .pricing-card {
+            border-color: #444444;
+        }
+
+        [data-theme="dark"] .pricing-card.featured {
+            background: var(--text);
             color: var(--bg);
+            border-color: var(--text);
+        }
+
+        [data-theme="dark"] .comparison-card {
+            border-color: #444444;
         }
 
         /* Final CTA */
@@ -621,7 +721,7 @@
 
         .final-cta h2 {
             font-family: 'Crimson Pro', serif;
-            font-size: 4.5rem;
+            font-size: 5.5rem;
             font-weight: 600;
             letter-spacing: -0.03em;
             margin-bottom: 2rem;
@@ -645,7 +745,7 @@
             padding: 4rem;
             text-align: center;
             color: var(--text-muted);
-            background: white;
+            background: var(--card-bg);
             border-top: 1px solid var(--border);
         }
 
@@ -724,13 +824,31 @@
     </style>
 </head>
 <body>
+    <div class="custom-cursor"></div>
     <header>
         <div class="header-container">
-            <div class="logo">
+            <a href="#" class="logo">
                 <img src="https://raw.githubusercontent.com/megdesigns/Showcase/main/photos/showcaselogo.png" alt="Showcase Logo" style="height: 32px; margin-right: 8px;">
                 Showcase
+            </a>
+            <div class="header-right">
+                <div class="mac-label">macOS</div>
+                <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+                    <span class="theme-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <line x1="12" y1="1" x2="12" y2="3"></line>
+                            <line x1="12" y1="21" x2="12" y2="23"></line>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                            <line x1="1" y1="12" x2="3" y2="12"></line>
+                            <line x1="21" y1="12" x2="23" y2="12"></line>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                        </svg>
+                    </span>
+                </button>
             </div>
-            <div class="mac-label">macOS</div>
         </div>
     </header>
 
@@ -738,7 +856,7 @@
     <section class="hero">
         <div class="hero-content">
             <h1>Screen recordings that show off</h1>
-            <p class="subtitle">Showcase is a screen recording tool for designers, creators, educators and really anyone who wants their tutorials to look as polished as their work. With smart zoom, custom cursors, and branded webcam frames, and more,  it's the perfect screen recording tool</p>
+            <p class="subtitle">Showcase is a screen recording tool for designers, creators, educators and really anyone who wants their tutorials to look as polished as their work. With auto-zoom, custom cursors, and branded webcam frames, it's the perfect screen recording tool</p>
             <div class="cta-container">
                 <a href="https://tally.so/r/D4p48Z" class="primary-cta" target="_blank">Join the waitlist</a>
                 <p class="helper-text">No spam. Just early access.</p>
@@ -778,7 +896,7 @@
             <div class="comparison-card featured animate-on-scroll scale-in delay-200">
                 <h3 class="comparison-card-title">Showcase</h3>
                 <ul class="comparison-features">
-                    <li><span class="feature-icon check">✓</span> Smart zoom on clicks</li>
+                    <li><span class="feature-icon check">✓</span> Auto-zoom on clicks</li>
                     <li><span class="feature-icon check">✓</span> Custom webcam frames</li>
                     <li><span class="feature-icon check">✓</span> Branded cursor styles</li>
                     <li><span class="feature-icon check">✓</span> One-click export</li>
@@ -822,7 +940,7 @@
         <div class="feature-grid">
             <div class="feature-card">
                 <div class="feature-number">01</div>
-                <h3>Smart Zoom</h3>
+                <h3>Smart Auto-Zoom</h3>
                 <p>Zoom follows your clicks and movement — like the tutorials you actually admire.</p>
             </div>
 
@@ -841,7 +959,7 @@
             <div class="feature-card">
                 <div class="feature-number">04</div>
                 <h3>Effortless Export & Sharing</h3>
-                <p>No gymnastics. Record → export → share.</p>
+                <p>No editing gymnastics. Record → export → share.</p>
             </div>
         </div>
     </section>
@@ -849,7 +967,7 @@
     <!-- PRICING -->
     <section class="pricing" id="pricing">
         <div class="pricing-container">
-            <h2 class="animate-on-scroll fade-in-up">Mostly free, affordable pricing. </h2>
+            <h2 class="animate-on-scroll fade-in-up">Simple pricing. No overthinking.</h2>
             
             <p class="pricing-copy animate-on-scroll fade-in-up delay-100">Early users on the waitlist get priority access and launch perks.</p>
 
@@ -860,7 +978,7 @@
                     <div class="price-period" style="filter: none;">forever</div>
                     <ul class="pricing-features">
                         <li>Screen recording</li>
-                        <li>Webcam frames</li>
+                        <li>3 webcam frames</li>
                         <li>Basic cursor</li>
                         <li>720p export</li>
                         <li>Click animations</li>
@@ -874,8 +992,8 @@
                     <div class="price-period">per month</div>
                     <ul class="pricing-features">
                         <li>Everything in Free</li>
-                        <li>Smart zoom</li>
-                        <li>Multiple webcam frames</li>
+                        <li>Smart auto-zoom</li>
+                        <li>All 7 webcam frames</li>
                         <li class="feature-blurred">Custom cursors</li>
                         <li class="feature-blurred">HD export</li>
                         <li class="feature-blurred">Unlimited recording</li>
@@ -889,10 +1007,8 @@
                     <div class="price-period">one-time payment</div>
                     <ul class="pricing-features">
                         <li>Everything in Free</li>
-                        <li>Smart zoom</li>
-                        <li>Multiple webcam frames</li>
-                         <li class="feature-blurred">Custom cursors</li>
-                        <li class="feature-blurred">HD export</li>
+                        <li>Smart auto-zoom</li>
+                        <li>All 7 webcam frames</li>
                         <li class="feature-blurred">Lifetime updates</li>
                         <li class="feature-blurred">Priority support</li>
                         <li class="feature-blurred">Early features</li>
@@ -914,9 +1030,84 @@
 
     <footer>
         <p>&copy; 2026 Showcase. Made for people who care about the details.</p>
-        <p>Built by <a href="https://mariangasinu.com">Meg</a> x <a href="https://ahglinder.com">Grey</a> • <a href="privacy.html">Privacy Policy</a></p>
+        <p>Built by <a href="https://mariangasinu.com">Meg</a> x <strong>Grey</strong> • <a href="privacy.html">Privacy Policy</a></p>
     </footer>
     <script>
+        // Custom Cursor
+        const cursor = document.querySelector('.custom-cursor');
+        let mouseX = 0;
+        let mouseY = 0;
+        let cursorX = 0;
+        let cursorY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        function animateCursor() {
+            const delay = 0.15;
+            cursorX += (mouseX - cursorX) * delay;
+            cursorY += (mouseY - cursorY) * delay;
+            
+            cursor.style.left = cursorX + 'px';
+            cursor.style.top = cursorY + 'px';
+            
+            requestAnimationFrame(animateCursor);
+        }
+
+        animateCursor();
+
+        // Add hover effect
+        const hoverElements = document.querySelectorAll('a, button, .feature-card, .comparison-card, .pricing-card');
+        hoverElements.forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+            el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+        });
+
+        // Theme Toggle
+        function toggleTheme() {
+            const html = document.documentElement;
+            const themeIcon = document.querySelector('.theme-icon');
+            const currentTheme = html.getAttribute('data-theme');
+            
+            if (currentTheme === 'dark') {
+                html.removeAttribute('data-theme');
+                themeIcon.innerHTML = `
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                `;
+                localStorage.setItem('theme', 'light');
+            } else {
+                html.setAttribute('data-theme', 'dark');
+                themeIcon.innerHTML = `
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                `;
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            document.querySelector('.theme-icon').innerHTML = `
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            `;
+        }
+
         // Scroll Animation Observer
         const observerOptions = {
             threshold: 0.1,
