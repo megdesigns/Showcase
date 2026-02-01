@@ -5,27 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Showcase - Screen Recordings That Show Off</title>
     
-    <!-- Favicon -->
     <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/megdesigns/Showcase/main/photos/showcaselogo.png">
     <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/megdesigns/Showcase/main/photos/showcaselogo.png">
     
-    <!-- SEO Meta Tags -->
     <meta name="description" content="Showcase is a screen recording tool for designers, developers, creators, and educators. Record with smart zoom, custom cursors, and branded webcam frames.">
-    <meta name="keywords" content="screen recording, screen recorder, tutorial recording, video recording, macOS screen recorder">
-    
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://megdesigns.github.io/Showcase/">
-    <meta property="og:title" content="Showcase - Screen Recordings That Show Off">
-    <meta property="og:description" content="Record with intention. Screen recordings with smart zoom, custom cursors, and branded webcam frames.">
-    <meta property="og:image" content="https://raw.githubusercontent.com/megdesigns/Showcase/main/photos/showcaselogo.png">
-    
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://megdesigns.github.io/Showcase/">
-    <meta property="twitter:title" content="Showcase - Screen Recordings That Show Off">
-    <meta property="twitter:description" content="Record with intention. Screen recordings with smart zoom, custom cursors, and branded webcam frames.">
-    <meta property="twitter:image" content="https://raw.githubusercontent.com/megdesigns/Showcase/main/photos/showcaselogo.png">
     
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
@@ -61,7 +44,6 @@
             transition: background 0.3s ease, color 0.3s ease;
         }
 
-        /* Custom Animated Cursor */
         .custom-cursor {
             width: 20px;
             height: 20px;
@@ -82,25 +64,14 @@
             opacity: 0.3;
         }
 
-        /* Fallback cursors */
-        * {
-            cursor: none;
-        }
-
-        a, button {
-            cursor: none;
-        }
+        * { cursor: none; }
+        a, button { cursor: none; }
 
         @media (hover: none) {
-            * {
-                cursor: auto;
-            }
-            .custom-cursor {
-                display: none;
-            }
+            * { cursor: auto; }
+            .custom-cursor { display: none; }
         }
 
-        /* Header */
         header {
             padding: 2rem 4rem;
             display: flex;
@@ -134,9 +105,7 @@
             transition: opacity 0.3s;
         }
 
-        .logo:hover {
-            opacity: 0.7;
-        }
+        .logo:hover { opacity: 0.7; }
 
         .header-right {
             display: flex;
@@ -184,17 +153,22 @@
             stroke: var(--text);
         }
 
-        /* Hero Section */
+        /* HERO - TWO COLUMN */
         .hero {
             padding: 8rem 4rem 4rem;
             max-width: 1400px;
             margin: 0 auto;
         }
 
+        .hero-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
         .hero-content {
-            max-width: 680px;
-            margin: 0 auto 4rem;
-            text-align: center;
+            text-align: left;
         }
 
         .hero-content h1 {
@@ -204,7 +178,6 @@
             line-height: 1.05;
             letter-spacing: -0.03em;
             margin-bottom: 1.5rem;
-            animation: fadeInUp 0.8s ease-out;
         }
 
         .hero-content .subtitle {
@@ -212,15 +185,13 @@
             color: var(--text-muted);
             line-height: 1.7;
             margin-bottom: 2.5rem;
-            animation: fadeInUp 0.8s ease-out 0.2s both;
         }
 
         .cta-container {
             display: flex;
             flex-direction: column;
-            align-items: center;
+            align-items: flex-start;
             gap: 0.75rem;
-            animation: fadeInUp 0.8s ease-out 0.4s both;
         }
 
         .primary-cta {
@@ -233,9 +204,6 @@
             font-size: 1.05rem;
             border: 2px solid var(--text);
             transition: all 0.3s;
-            text-align: center;
-            display: inline-block;
-            width: fit-content;
         }
 
         .primary-cta:hover {
@@ -250,99 +218,74 @@
             color: var(--text-muted);
         }
 
-        /* UI Showcase Section */
-        .ui-showcase {
-            margin-top: 4rem;
-            animation: fadeInUp 0.8s ease-out 0.6s both;
-        }
-
-        .ui-images {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-        }
-
-        .ui-image-container {
-            position: relative;
+        .hero-image img {
             width: 100%;
-            aspect-ratio: 16/10;
+            height: auto;
             border-radius: 1rem;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
             border: 1px solid var(--border);
         }
 
-        .ui-image-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .ui-label {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: var(--card-bg);
-            backdrop-filter: blur(10px);
-            padding: 0.4rem 1rem;
-            border-radius: 2rem;
-            font-size: 0.85rem;
-            font-weight: 500;
-            border: 1px solid var(--border);
-            color: var(--text);
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes scaleIn {
-            from {
-                opacity: 0;
-                transform: scale(0.95);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        .animate-on-scroll {
-            opacity: 0;
-            animation-fill-mode: forwards;
-        }
-
-        .animate-on-scroll.animated {
-            animation-duration: 0.8s;
-            animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .fade-in-up {
-            animation-name: fadeInUp;
-        }
-
-        .scale-in {
-            animation-name: scaleIn;
-        }
-
-        .delay-100 { animation-delay: 0.1s; }
-        .delay-200 { animation-delay: 0.2s; }
-        .delay-300 { animation-delay: 0.3s; }
-        .delay-400 { animation-delay: 0.4s; }
-
-        /* Problem Section */
-        .problem-section {
+        /* MOCKUP GALLERY */
+        .mockup-gallery {
             padding: 8rem 4rem;
             background: var(--card-bg);
             border-top: 1px solid var(--border);
             border-bottom: 1px solid var(--border);
+        }
+
+        .mockup-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .mockup-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .mockup-header h2 {
+            font-family: 'Crimson Pro', serif;
+            font-size: 3.8rem;
+            font-weight: 600;
+            letter-spacing: -0.03em;
+            margin-bottom: 1rem;
+        }
+
+        .mockup-header p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        .mockup-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .mockup-item {
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .mockup-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+
+        .mockup-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* PROBLEM SECTION */
+        .problem-section {
+            padding: 8rem 4rem;
+            background: var(--bg);
         }
 
         .problem-container {
@@ -366,11 +309,12 @@
             line-height: 1.7;
         }
 
-        /* Comparison Section */
+        /* COMPARISON */
         .comparison-section {
             padding: 8rem 4rem;
             max-width: 1400px;
             margin: 0 auto;
+            background: var(--card-bg);
         }
 
         .comparison-header {
@@ -456,36 +400,16 @@
             min-width: 18px;
         }
 
-        .feature-icon.check {
-            color: #10B981;
-        }
+        .feature-icon.check { color: #10B981; }
+        .feature-icon.cross { color: #EF4444; }
+        .comparison-card.featured .feature-icon.check { color: #34D399; }
 
-        .feature-icon.cross {
-            color: #EF4444;
-        }
-
-        .comparison-card.featured .feature-icon.check {
-            color: #34D399;
-        }
-
-        [data-theme="dark"] .comparison-card.featured {
-            background: var(--text);
-            color: var(--bg);
-        }
-
-        [data-theme="dark"] .feature-icon.check {
-            color: #34D399;
-        }
-
-        [data-theme="dark"] .feature-icon.cross {
-            color: #F87171;
-        }
-
-        /* Features Section - MAGAZINE STYLE */
+        /* FEATURES */
         .features {
             padding: 8rem 4rem;
             max-width: 1800px;
             margin: 0 auto;
+            background: var(--bg);
         }
 
         .section-header {
@@ -515,9 +439,7 @@
             transition: all 0.3s;
         }
 
-        .feature-card:last-child {
-            border-right: none;
-        }
+        .feature-card:last-child { border-right: none; }
 
         .feature-card:hover {
             background: var(--bg);
@@ -553,7 +475,7 @@
             font-size: 0.95rem;
         }
 
-        /* Pricing Section */
+        /* PRICING */
         .pricing {
             padding: 8rem 4rem;
             background: var(--card-bg);
@@ -620,9 +542,7 @@
             color: var(--bg);
         }
 
-        .pricing-card.featured .price {
-            color: var(--bg);
-        }
+        .pricing-card.featured .price { color: var(--bg); }
 
         .plan-name {
             font-size: 0.9rem;
@@ -632,9 +552,7 @@
             color: var(--text-muted);
         }
 
-        .pricing-card.featured .plan-name {
-            color: rgba(255,255,255,0.7);
-        }
+        .pricing-card.featured .plan-name { color: rgba(255,255,255,0.7); }
 
         .price {
             font-family: 'Crimson Pro', serif;
@@ -653,9 +571,7 @@
             user-select: none;
         }
 
-        .pricing-card.featured .price-period {
-            color: rgba(255,255,255,0.7);
-        }
+        .pricing-card.featured .price-period { color: rgba(255,255,255,0.7); }
 
         .pricing-features {
             list-style: none;
@@ -691,7 +607,6 @@
             cursor: pointer;
             transition: all 0.3s;
             font-size: 1rem;
-            position: relative;
             margin-top: auto;
         }
 
@@ -713,29 +628,7 @@
             border-color: var(--text);
         }
 
-        [data-theme="dark"] .feature-grid {
-            border-color: #444444;
-        }
-
-        [data-theme="dark"] .feature-card {
-            border-right-color: #444444;
-        }
-
-        [data-theme="dark"] .pricing-card {
-            border-color: #444444;
-        }
-
-        [data-theme="dark"] .pricing-card.featured {
-            background: var(--text);
-            color: var(--bg);
-            border-color: var(--text);
-        }
-
-        [data-theme="dark"] .comparison-card {
-            border-color: #444444;
-        }
-
-        /* Final CTA */
+        /* FINAL CTA */
         .final-cta {
             padding: 8rem 4rem;
             background: var(--bg);
@@ -748,14 +641,6 @@
             font-weight: 600;
             letter-spacing: -0.03em;
             margin-bottom: 2rem;
-            color: var(--text);
-        }
-
-        .final-cta .cta-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.75rem;
         }
 
         .final-cta .primary-cta {
@@ -763,7 +648,7 @@
             padding: 1.2rem 3rem;
         }
 
-        /* Footer */
+        /* FOOTER */
         footer {
             padding: 4rem;
             text-align: center;
@@ -772,347 +657,77 @@
             border-top: 1px solid var(--border);
         }
 
-        footer p {
-            margin-bottom: 1rem;
-        }
-
+        footer p { margin-bottom: 1rem; }
         footer a {
             color: var(--text);
             text-decoration: none;
             font-weight: 600;
         }
 
-        /* Responsive - COMPREHENSIVE MOBILE OPTIMIZATION */
-        
-        /* Tablet */
+        /* RESPONSIVE */
         @media (max-width: 1024px) {
-            .hero {
-                padding: 6rem 3rem 3rem;
+            .hero { padding: 6rem 3rem 3rem; }
+            .hero-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
             }
-
-            .hero-content h1 {
-                font-size: 3.5rem;
-            }
-
-            .problem-container h2 {
-                font-size: 3.5rem;
-            }
-
-            .comparison-header h2 {
-                font-size: 3rem;
-            }
-
-            .section-header h2 {
-                font-size: 3.5rem;
-            }
-
-            .pricing h2 {
-                font-size: 3.5rem;
-            }
-
-            .final-cta h2 {
-                font-size: 3.5rem;
-            }
+            .hero-content { text-align: center; }
+            .cta-container { align-items: center; }
+            .hero-content h1 { font-size: 3.5rem; }
+            .mockup-grid { grid-template-columns: repeat(2, 1fr); }
+            .comparison-grid { grid-template-columns: 1fr; }
+            .feature-grid { grid-template-columns: repeat(2, 1fr); }
+            .pricing-cards { grid-template-columns: 1fr; }
         }
 
-        /* Mobile Large (768px and below) */
         @media (max-width: 768px) {
-            /* Header */
-            header {
-                padding: 1rem;
-            }
-
-            .logo {
-                font-size: 1.2rem;
-            }
-
-            .logo img {
-                height: 26px;
-            }
-
+            header { padding: 1rem; }
+            .logo { font-size: 1.2rem; }
+            .logo img { height: 26px; }
             .mac-label {
                 font-size: 0.7rem;
                 padding: 0.35rem 0.7rem;
             }
-
             .theme-toggle {
                 width: 34px;
                 height: 34px;
             }
-
-            /* Hero */
-            .hero {
-                padding: 2.5rem 1rem 1.5rem;
-            }
-
-            .hero-content {
-                max-width: 100%;
-            }
-
+            .hero { padding: 2.5rem 1rem 1.5rem; }
             .hero-content h1 {
                 font-size: 1.8rem;
                 line-height: 1.15;
-                margin-bottom: 0.75rem;
             }
-
-            .hero-content .subtitle {
-                font-size: 0.95rem;
-                line-height: 1.5;
-                margin-bottom: 1.5rem;
-            }
-
+            .hero-content .subtitle { font-size: 0.95rem; }
             .primary-cta {
                 padding: 0.85rem 1.75rem;
                 font-size: 0.9rem;
             }
-
-            .helper-text {
-                font-size: 0.8rem;
-            }
-
-            .ui-showcase {
-                margin-top: 2rem;
-            }
-
-            .ui-images {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-            }
-
-            .ui-label {
-                font-size: 0.7rem;
-                padding: 0.3rem 0.75rem;
-                top: 0.5rem;
-                right: 0.5rem;
-            }
-
-            /* Problem Section */
-            .problem-section {
-                padding: 3rem 1rem;
-            }
-
-            .problem-container {
-                max-width: 100%;
-            }
-
-            .problem-container h2 {
-                font-size: 1.6rem;
-                line-height: 1.25;
-                margin-bottom: 0.75rem;
-            }
-
-            .problem-container p {
-                font-size: 0.95rem;
-                line-height: 1.5;
-            }
-
-            /* Comparison Section */
-            .comparison-section {
-                padding: 3rem 1rem;
-            }
-
-            .comparison-header {
-                margin-bottom: 2rem;
-            }
-
-            .comparison-header h2 {
-                font-size: 1.6rem;
-                margin-bottom: 0.5rem;
-            }
-
-            .comparison-header p {
-                font-size: 0.9rem;
-            }
-
-            .comparison-grid {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-            }
-
-            .comparison-card {
-                padding: 1.5rem 1.25rem;
-            }
-
-            .comparison-card-title {
-                font-size: 1.2rem;
-                margin-bottom: 1rem;
-            }
-
-            .comparison-features li {
-                padding: 0.55rem 0;
-                font-size: 0.85rem;
-            }
-
-            /* Features Section */
-            .features {
-                padding: 3rem 1rem;
-            }
-
-            .section-header {
-                margin-bottom: 2rem;
-            }
-
-            .section-header h2 {
-                font-size: 1.6rem;
-                line-height: 1.25;
-            }
-
-            .feature-grid {
-                grid-template-columns: 1fr;
-                border: 2px solid var(--border);
-            }
-
+            .mockup-gallery { padding: 3rem 1rem; }
+            .mockup-header h2 { font-size: 2rem; }
+            .mockup-grid { grid-template-columns: 1fr; gap: 1rem; }
+            .problem-section { padding: 3rem 1rem; }
+            .problem-container h2 { font-size: 1.6rem; }
+            .comparison-section { padding: 3rem 1rem; }
+            .comparison-header h2 { font-size: 1.6rem; }
+            .features { padding: 3rem 1rem; }
+            .section-header h2 { font-size: 1.6rem; }
+            .feature-grid { grid-template-columns: 1fr; }
             .feature-card {
                 border-right: none;
                 border-bottom: 2px solid var(--border);
                 padding: 1.75rem 1.25rem;
             }
-
-            .feature-card:last-child {
-                border-bottom: none;
-            }
-
-            .feature-number {
-                font-size: 1.75rem;
-                margin-bottom: 0.5rem;
-            }
-
-            .feature-card h3 {
-                font-size: 1.15rem;
-                margin-bottom: 0.4rem;
-            }
-
-            .feature-card p {
-                font-size: 0.9rem;
-                line-height: 1.45;
-            }
-
-            /* Pricing Section */
-            .pricing {
-                padding: 3rem 1rem;
-            }
-
-            .pricing-container {
-                max-width: 100%;
-            }
-
-            .pricing h2 {
-                font-size: 1.6rem;
-                line-height: 1.25;
-                margin-bottom: 0.75rem;
-            }
-
-            .pricing-copy {
-                font-size: 0.9rem;
-                margin-bottom: 1.5rem;
-                line-height: 1.5;
-            }
-
-            .pricing-cards {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-                margin-top: 2rem;
-            }
-
-            .pricing-card {
-                padding: 1.5rem 1.25rem;
-            }
-
-            .pricing-card.featured {
-                transform: scale(1);
-            }
-
-            .pricing-card.featured:hover {
-                transform: translateY(-4px);
-            }
-
-            .plan-name {
-                font-size: 0.75rem;
-                margin-bottom: 0.6rem;
-            }
-
-            .price {
-                font-size: 2rem;
-            }
-
-            .price-period {
-                font-size: 0.85rem;
-                margin-bottom: 0.85rem;
-            }
-
-            .pricing-features {
-                margin-bottom: 0.85rem;
-            }
-
-            .pricing-features li {
-                padding: 0.4rem 0;
-                font-size: 0.85rem;
-            }
-
-            .pricing-btn {
-                padding: 0.85rem;
-                font-size: 0.85rem;
-            }
-
-            /* Final CTA */
-            .final-cta {
-                padding: 3rem 1rem;
-            }
-
-            .final-cta h2 {
-                font-size: 1.6rem;
-                line-height: 1.25;
-                margin-bottom: 1.25rem;
-            }
-
-            .final-cta .primary-cta {
-                font-size: 0.95rem;
-                padding: 0.95rem 2rem;
-            }
-
-            /* Footer */
-            footer {
-                padding: 2.5rem 1rem;
-            }
-
-            footer p {
-                font-size: 0.85rem;
-                margin-bottom: 0.6rem;
-            }
-        }
-
-        /* Mobile Small (480px and below) */
-        @media (max-width: 480px) {
-            .hero-content h1 {
-                font-size: 1.65rem;
-            }
-
-            .problem-container h2,
-            .comparison-header h2,
-            .section-header h2,
-            .pricing h2,
-            .final-cta h2 {
-                font-size: 1.5rem;
-            }
-
-            .hero-content .subtitle {
-                font-size: 0.9rem;
-            }
-
-            .problem-container p {
-                font-size: 0.9rem;
-            }
-
-            .comparison-features li,
-            .feature-card p,
-            .pricing-features li {
-                font-size: 0.8rem;
-            }
+            .feature-card:last-child { border-bottom: none; }
+            .pricing { padding: 3rem 1rem; }
+            .pricing h2 { font-size: 1.6rem; }
+            .final-cta { padding: 3rem 1rem; }
+            .final-cta h2 { font-size: 1.6rem; }
         }
     </style>
 </head>
 <body>
     <div class="custom-cursor"></div>
+    
     <header>
         <div class="header-container">
             <a href="#" class="logo">
@@ -1121,9 +736,9 @@
             </a>
             <div class="header-right">
                 <div class="mac-label">macOS</div>
-                <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+                <button class="theme-toggle" onclick="toggleTheme()">
                     <span class="theme-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <circle cx="12" cy="12" r="5"></circle>
                             <line x1="12" y1="1" x2="12" y2="3"></line>
                             <line x1="12" y1="21" x2="12" y2="23"></line>
@@ -1140,48 +755,39 @@
         </div>
     </header>
 
-    <!-- HERO -->
+    <!-- HERO TWO COLUMN -->
     <section class="hero">
-        <div class="hero-content">
-            <h1>Screen recordings that show off</h1>
-            <p class="subtitle">Showcase is a screen recording tool for designers, developers, creators, educators and really anyone who wants their tutorials to look as polished as their work. With smart zoom, custom cursors, and branded webcam frames, and more, it's the perfect screen recording tool</p>
-            <div class="cta-container">
-                <a href="https://tally.so/r/D4p48Z" class="primary-cta" target="_blank">Join the waitlist</a>
-                <p class="helper-text">No spam. Just early access.</p>
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Screen recordings that show off</h1>
+                <p class="subtitle">Showcase is a screen recording tool for designers, developers, creators, and educators who want their tutorials to look as polished as their work.</p>
+                <div class="cta-container">
+                    <a href="https://tally.so/r/D4p48Z" class="primary-cta">Join the waitlist</a>
+                    <p class="helper-text">No spam. Just early access.</p>
+                </div>
             </div>
-        </div>
-
-        <div class="ui-showcase">
-            <div class="ui-images">
-                <div class="ui-image-container">
-                    <img src="https://raw.githubusercontent.com/megdesigns/Showcase/main/photos/showcasedark.png" alt="Showcase Dark Mode UI">
-                    <div class="ui-label">Dark Mode</div>
-                </div>
-                <div class="ui-image-container">
-                    <img src="https://raw.githubusercontent.com/megdesigns/Showcase/main/photos/showcaselight.png" alt="Showcase Light Mode UI">
-                    <div class="ui-label">Light Mode</div>
-                </div>
+            <div class="hero-image">
+                <img src="https://raw.githubusercontent.com/megdesigns/Showcase/main/photos/hero-app.png" alt="Showcase App">
             </div>
         </div>
     </section>
 
-    <!-- PROBLEM SECTION -->
+    <!-- PROBLEM -->
     <section class="problem-section">
         <div class="problem-container">
-            <h2 class="animate-on-scroll fade-in-up">Your work is thoughtful, and your screen recordings shouldn't look generic.</h2>
-            <p class="animate-on-scroll fade-in-up delay-100">Showcase lets you record with intention so your videos fit your aesthetic and feel designed, not default.</p>
+            <h2>Screen recordings don't have to look generic</h2>
+            <p>Showcase helps you create recordings that match the quality of your work. No more default cursors, boring frames, or lifeless exports.</p>
         </div>
     </section>
 
     <!-- COMPARISON -->
     <section class="comparison-section">
         <div class="comparison-header">
-            <h2 class="animate-on-scroll fade-in-up">How Showcase compares to others</h2>
-            <p class="animate-on-scroll fade-in-up delay-100">See what makes us different</p>
+            <h2>How Showcase compares</h2>
+            <p>Built for creators who care about details</p>
         </div>
-
         <div class="comparison-grid">
-            <div class="comparison-card featured animate-on-scroll scale-in delay-200">
+            <div class="comparison-card featured">
                 <h3 class="comparison-card-title">Showcase</h3>
                 <ul class="comparison-features">
                     <li><span class="feature-icon check">✓</span> Smart zoom on clicks</li>
@@ -1192,8 +798,7 @@
                     <li><span class="feature-icon check">✓</span> Free + Premium</li>
                 </ul>
             </div>
-
-            <div class="comparison-card animate-on-scroll scale-in delay-300">
+            <div class="comparison-card">
                 <h3 class="comparison-card-title">Generic Tools</h3>
                 <ul class="comparison-features">
                     <li><span class="feature-icon cross">✗</span> Auto-zoom on clicks</li>
@@ -1204,8 +809,7 @@
                     <li><span class="feature-icon check">✓</span> Free only</li>
                 </ul>
             </div>
-
-            <div class="comparison-card animate-on-scroll scale-in delay-400">
+            <div class="comparison-card">
                 <h3 class="comparison-card-title">Pro Tools</h3>
                 <ul class="comparison-features">
                     <li><span class="feature-icon cross">✗</span> Auto-zoom on clicks</li>
@@ -1222,43 +826,37 @@
     <!-- FEATURES -->
     <section class="features">
         <div class="section-header">
-            <h2 class="animate-on-scroll fade-in-up">What you record matters. How it looks does too.</h2>
+            <h2>Features that make your recordings stand out</h2>
         </div>
-
         <div class="feature-grid">
             <div class="feature-card">
                 <div class="feature-number">01</div>
                 <h3>Smart Zoom</h3>
-                <p>Zoom follows your clicks and movement — like the tutorials you actually admire.</p>
+                <p>Automatically follow your cursor and zoom on key actions to keep viewers engaged.</p>
             </div>
-
             <div class="feature-card">
                 <div class="feature-number">02</div>
-                <h3>Custom Cursors & Click Styles</h3>
-                <p>Change color, size, and animation to match your personal brand.</p>
+                <h3>Custom Cursors</h3>
+                <p>Change cursor color, size, and click animations to match your brand.</p>
             </div>
-
             <div class="feature-card">
                 <div class="feature-number">03</div>
-                <h3>Branded Webcam Frames</h3>
-                <p>Choose shapes, styles, and placement that feel intentional.</p>
+                <h3>Webcam Frames</h3>
+                <p>Add professional webcam overlays with customizable shapes and styles.</p>
             </div>
-
             <div class="feature-card">
                 <div class="feature-number">04</div>
-                <h3>Effortless Export & Sharing</h3>
-                <p>No editing gymnastics. Record → export → share.</p>
+                <h3>Quick Export</h3>
+                <p>Export in seconds with optimized settings for web, social, or HD.</p>
             </div>
         </div>
     </section>
 
     <!-- PRICING -->
-    <section class="pricing" id="pricing">
+    <section class="pricing">
         <div class="pricing-container">
-            <h2 class="animate-on-scroll fade-in-up">Mostly free, reasonable pricing for pro features</h2>
-            
-            <p class="pricing-copy animate-on-scroll fade-in-up delay-100">Early users on the waitlist get priority access and launch perks.</p>
-
+            <h2>Simple pricing for everyone</h2>
+            <p class="pricing-copy">Start free, upgrade when you're ready. Early waitlist members get special launch pricing.</p>
             <div class="pricing-cards">
                 <div class="pricing-card featured">
                     <div class="plan-name">Free</div>
@@ -1266,14 +864,13 @@
                     <div class="price-period" style="filter: none;">forever</div>
                     <ul class="pricing-features">
                         <li>Screen recording</li>
-                        <li> Default Webcam frames</li>
+                        <li>Default webcam frames</li>
                         <li>Basic cursor</li>
                         <li>720p export</li>
-                        <li>Default lick animations</li>
+                        <li>Default click animations</li>
                     </ul>
-                    <button class="pricing-btn"><span>Get Started</span></button>
+                    <button class="pricing-btn">Get Started</button>
                 </div>
-
                 <div class="pricing-card">
                     <div class="plan-name">Monthly</div>
                     <div class="price">$5</div>
@@ -1286,134 +883,96 @@
                         <li class="feature-blurred">HD export</li>
                         <li class="feature-blurred">Unlimited recording</li>
                     </ul>
-                    <button class="pricing-btn"><span>Coming Soon</span></button>
+                    <button class="pricing-btn">Coming Soon</button>
                 </div>
-
                 <div class="pricing-card">
                     <div class="plan-name">Lifetime</div>
                     <div class="price">$75</div>
                     <div class="price-period">one-time payment</div>
                     <ul class="pricing-features">
-                        <li>Everything in Free</li>
-                        <li>Smart zoom</li>
-                        <li>Multiple webcam frames</li>
-                        <li class="feature-blurred">Lifetime updates</li>
-                        <li class="feature-blurred">Priority support</li>
+                        <li>Everything in Monthly</li>
+                        <li>Lifetime updates</li>
+                        <li>Priority support</li>
                         <li class="feature-blurred">Early features</li>
+                        <li class="feature-blurred">Special perks</li>
+                        <li class="feature-blurred">Best value</li>
                     </ul>
-                    <button class="pricing-btn"><span>Coming Soon</span></button>
+                    <button class="pricing-btn">Coming Soon</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+     <!-- MOCKUP GALLERY -->
+    <section class="mockup-gallery">
+        <div class="mockup-container">
+            <div class="mockup-header">
+                <h2>Showcase everywhere</h2>
+                <p>Designed to make an impact, from your screen to the world</p>
+            </div>
+            <div class="mockup-grid">
+                <div class="mockup-item">
+                    <img src="https://raw.githubusercontent.com/megdesigns/Showcase/main/photos/mockup-1.png" alt="Showcase on MacBook">
+                </div>
+                <div class="mockup-item">
+                    <img src="https://raw.githubusercontent.com/megdesigns/Showcase/main/photos/mockup-2.png" alt="Showcase Billboard">
+                </div>
+                <div class="mockup-item">
+                    <img src="https://raw.githubusercontent.com/megdesigns/Showcase/main/photos/mockup-3.png" alt="Showcase Poster">
                 </div>
             </div>
         </div>
     </section>
 
     <!-- FINAL CTA -->
-    <section class="final-cta" id="waitlist">
-        <h2 class="animate-on-scroll fade-in-up">Be one of the first to record differently.</h2>
+    <section class="final-cta">
+        <h2>Ready to create better screen recordings?</h2>
         <div class="cta-container">
-            <a href="https://tally.so/r/D4p48Z" class="primary-cta" target="_blank">Join the Showcase waitlist</a>
-            <p class="helper-text">Early access • Launch updates • That's it</p>
+            <a href="https://tally.so/r/D4p48Z" class="primary-cta">Join the Showcase waitlist</a>
+            <p class="helper-text">Be the first to get access • No spam</p>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2026 Showcase. Made for people who care about the details.</p>
-        <p>Built by <a href="https://mariangasinu.com">Meg</a> x <a href="https://ahglinder.com">Grey</a>  • <a href="privacy.html">Privacy Policy</a></p>
+        <p>&copy; 2026 Showcase. For creators who care about details.</p>
+        <p>Built by <a href="https://mariangasinu.com">Meg</a> × <a href="https://ahglinder.com">Grey</a> • <a href="privacy.html">Privacy</a></p>
     </footer>
+    
     <script>
-        // Custom Cursor
         const cursor = document.querySelector('.custom-cursor');
-        let mouseX = 0;
-        let mouseY = 0;
-        let cursorX = 0;
-        let cursorY = 0;
-
-        document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-        });
-
+        let mouseX = 0, mouseY = 0, cursorX = 0, cursorY = 0;
+        document.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY; });
         function animateCursor() {
             const delay = 0.15;
             cursorX += (mouseX - cursorX) * delay;
             cursorY += (mouseY - cursorY) * delay;
-            
             cursor.style.left = cursorX + 'px';
             cursor.style.top = cursorY + 'px';
-            
             requestAnimationFrame(animateCursor);
         }
-
         animateCursor();
-
-        // Add hover effect
-        const hoverElements = document.querySelectorAll('a, button, .feature-card, .comparison-card, .pricing-card');
-        hoverElements.forEach(el => {
+        document.querySelectorAll('a, button, .feature-card, .comparison-card, .pricing-card, .mockup-item').forEach(el => {
             el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
             el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
         });
-
-        // Theme Toggle
+        
         function toggleTheme() {
             const html = document.documentElement;
-            const themeIcon = document.querySelector('.theme-icon');
-            const currentTheme = html.getAttribute('data-theme');
-            
-            if (currentTheme === 'dark') {
+            const icon = document.querySelector('.theme-icon');
+            if (html.getAttribute('data-theme') === 'dark') {
                 html.removeAttribute('data-theme');
-                themeIcon.innerHTML = `
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="5"></circle>
-                        <line x1="12" y1="1" x2="12" y2="3"></line>
-                        <line x1="12" y1="21" x2="12" y2="23"></line>
-                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                        <line x1="1" y1="12" x2="3" y2="12"></line>
-                        <line x1="21" y1="12" x2="23" y2="12"></line>
-                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                    </svg>
-                `;
+                icon.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>';
                 localStorage.setItem('theme', 'light');
             } else {
                 html.setAttribute('data-theme', 'dark');
-                themeIcon.innerHTML = `
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                    </svg>
-                `;
+                icon.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>';
                 localStorage.setItem('theme', 'dark');
             }
         }
-
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'dark') {
+        if (localStorage.getItem('theme') === 'dark') {
             document.documentElement.setAttribute('data-theme', 'dark');
-            document.querySelector('.theme-icon').innerHTML = `
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                </svg>
-            `;
+            document.querySelector('.theme-icon').innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>';
         }
-
-        // Scroll Animation Observer
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animated');
-                }
-            });
-        }, observerOptions);
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const animatedElements = document.querySelectorAll('.animate-on-scroll');
-            animatedElements.forEach(el => observer.observe(el));
-        });
     </script>
 </body>
 </html>
