@@ -10,6 +10,13 @@
   <meta name="description" content="Showcase is a screen recording tool for designers, developers, creators, and educators. Record with smart zoom, custom cursors, and branded webcam frames." />
 
   <style>
+    /* =========================
+      Showcase Landing (Redesign)
+      - SF Pro via system font stack
+      - Modern dark glass + high-contrast storytelling
+      - Keeps your image links intact
+    ========================== */
+
     /* ----- Base / Tokens ----- */
     :root{
       --bg: #333333;
@@ -578,11 +585,25 @@
     }
     @media (max-width: 720px){
       .wrap{ padding: 0 16px; }
-      .navInner{ padding: 12px 0; gap: 10px; }
+      .navInner{ padding: 12px 0; gap: 10px; flex-wrap: wrap; }
       .brand span{ font-size: 16px; }
       .navRight{ gap: 8px; }
       .navRight .pill,
       .navRight .btnPrimary{ display:none; }
+      .navLinks{
+        display:flex;
+        order: 3;
+        width: 100%;
+        justify-content: center;
+        gap: 8px;
+        overflow-x: auto;
+        padding-bottom: 2px;
+      }
+      .navLinks a{
+        white-space: nowrap;
+        padding: 8px 10px;
+        font-size: 13px;
+      }
 
       .hero{ padding: 36px 0 10px; }
       .h1{ font-size: clamp(30px, 10vw, 40px); }
@@ -595,7 +616,7 @@
       .heroCardTop .mini{
         gap: 8px;
         display: grid;
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
         width: 100%;
       }
       .heroCardTop > span{ display: none; }
@@ -613,16 +634,13 @@
       .priceCard,
       .storyCard{ padding: 14px; }
 
-      .ctaRow{
+      .featureCta{
         gap: 10px;
         display: grid;
         grid-template-columns: 1fr;
         width: 100%;
-        max-width: 360px;
-        margin-left: auto;
-        margin-right: auto;
       }
-      .ctaRow .btn{
+      .featureCta .btn{
         width: 100%;
         min-width: 0;
       }
@@ -795,7 +813,7 @@
               </li>
             </ul>
 
-            <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
+            <div class="ctaRow featureCta" style="margin-top:14px;">
               <a class="btn btnPrimary" href="https://tally.so/r/D4p48Z">Get early access</a>
               <a class="btn" href="#compare">Compare tools</a>
             </div>
@@ -862,10 +880,10 @@
     <section id="gallery" class="section">
       <div class="sectionHead">
         <div>
-          <div class="sectionTitle">Designed like a real macOS app</div>
+          <div class="sectionTitle">Polished, macOS-native feel</div>
           <p class="sectionDesc">
-            Your UI already has a strong direction (control bar + settings). This page leans into that:
-            dark, clean, and intentional.
+            Showcase feels at home on macOS. Thoughtful spacing, subtle depth, and a control bar that looks like it belongs, not just bolted on.
+            Everything is designed with familiar interactions that make it instantly comfortable to use.
           </p>
         </div>
       </div>
