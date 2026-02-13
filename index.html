@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
@@ -11,6 +10,7 @@
   <meta name="description" content="Showcase is a screen recording tool for designers, developers, creators, and educators. Record with smart zoom, custom cursors, and branded webcam frames." />
 
   <style>
+    /* ----- Base / Tokens ----- */
     :root{
       --bg: #333333;
       --surface: rgba(255,255,255,.06);
@@ -85,6 +85,7 @@
 
     .wrap{ max-width: var(--max); margin:0 auto; padding: 0 22px; }
 
+    /* ----- Subtle custom cursor (optional) ----- */
     .cursor{
       width: 14px; height: 14px; border-radius: 50%;
       border: 1.5px solid rgba(255,255,255,.55);
@@ -106,6 +107,7 @@
       *{ scroll-behavior:auto !important; transition:none !important; animation:none !important; }
     }
 
+    /* ----- Nav ----- */
     .nav{
       position: sticky; top:0; z-index: 120;
       backdrop-filter: blur(14px);
@@ -192,6 +194,7 @@
     .iconBtn:hover{ transform: translateY(-1px); background: var(--hover-bg); border-color: var(--hover-border); color: var(--hover-text); }
     .iconBtn svg{ width:18px; height:18px; opacity:.9; }
 
+    /* ----- “Black + gray sentence text” styling ----- */
     .emline{
       font-size: clamp(18px, 2.2vw, 22px);
       color: var(--muted);
@@ -203,6 +206,7 @@
       letter-spacing: -0.01em;
     }
 
+    /* ----- Hero ----- */
     .hero{
       padding: 64px 0 22px;
     }
@@ -284,6 +288,7 @@
       box-shadow: var(--shadow2);
     }
 
+    /* ----- Story section ----- */
     .section{ padding: 72px 0; }
     .sectionHead{
       display:flex;
@@ -339,6 +344,7 @@
     }
     .storyCard p{ color: var(--muted); font-size: 14px; line-height: 1.7; }
 
+    /* ----- Feature spotlight (media + bullets) ----- */
     .spotlight{
       display:grid;
       grid-template-columns: 1.05fr .95fr;
@@ -387,6 +393,7 @@
     }
     .check svg{ width:12px; height:12px; }
 
+    /* ----- Mockup gallery (keeps your 3 images) ----- */
     .gallery{
       display:grid;
       grid-template-columns: repeat(3, 1fr);
@@ -403,6 +410,7 @@
     .shot:hover{ transform: translateY(-3px); border-color: var(--hover-border); background: var(--hover-bg); }
     .shot img{ width:100%; height:auto; }
 
+    /* ----- Comparison (cleaner + tighter) ----- */
     .compareGrid{
       display:grid;
       grid-template-columns: 1fr 1fr 1fr;
@@ -456,6 +464,7 @@
     #compare .ok{ color: #22c55e; }
     #compare .no{ color: #ef4444; }
 
+    /* ----- Pricing (still “coming soon” but nicer) ----- */
     .pricingGrid{
       display:grid;
       grid-template-columns: 1.1fr .95fr .95fr;
@@ -521,6 +530,7 @@
       pointer-events:none;
     }
 
+    /* ----- Final CTA ----- */
     .ctaBlock{
       border-radius: var(--radius-xl);
       border: 1px solid var(--stroke);
@@ -543,6 +553,7 @@
       font-size: 15px;
     }
 
+    /* ----- Footer ----- */
     footer{
       padding: 34px 0 44px;
       border-top: 1px solid var(--stroke);
@@ -555,6 +566,7 @@
     }
     .footRow a{ color: var(--text); font-weight: 700; }
 
+    /* ----- Responsive ----- */
     @media (max-width: 980px){
       .heroGrid{ grid-template-columns: 1fr; }
       .storyGrid{ grid-template-columns: 1fr; }
@@ -583,7 +595,7 @@
       .heroCardTop .mini{
         gap: 8px;
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr;
         width: 100%;
       }
       .heroCardTop > span{ display: none; }
@@ -604,9 +616,9 @@
       .ctaRow{
         gap: 10px;
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr;
         width: 100%;
-        max-width: 460px;
+        max-width: 360px;
         margin-left: auto;
         margin-right: auto;
       }
@@ -622,6 +634,7 @@
 <body>
   <div class="cursor" aria-hidden="true"></div>
 
+  <!-- NAV -->
   <header class="nav">
     <div class="wrap">
       <div class="navInner">
@@ -651,6 +664,7 @@
     </div>
   </header>
 
+  <!-- HERO -->
   <main class="wrap">
     <section class="hero">
       <div class="heroGrid">
@@ -679,12 +693,14 @@
             <span>Preview</span>
           </div>
           <div class="heroCardMedia">
+            <!-- KEEPING YOUR IMAGE LINK -->
             <img id="heroPreviewImage" src="https://raw.githubusercontent.com/megdesigns/Showcase/main/photos/hero-app.png" alt="Showcase app preview" />
           </div>
         </div>
       </div>
     </section>
 
+    <!-- STORY / WHY -->
     <section id="story" class="section">
       <div class="sectionHead">
         <div>
@@ -715,6 +731,7 @@
       </div>
     </section>
 
+    <!-- FEATURE SPOTLIGHT -->
     <section id="features" class="section">
       <div class="sectionHead">
         <div>
@@ -731,6 +748,7 @@
       <div class="spotlight">
         <div class="panel">
           <div class="panelMedia">
+            <!-- KEEPING YOUR IMAGE LINK (using hero image as the “UI spotlight” for now) -->
             <img src="https://raw.githubusercontent.com/megdesigns/Showcase/main/photos/hero-app.png" alt="Showcase interface showing control bar and settings" />
           </div>
         </div>
@@ -786,6 +804,7 @@
       </div>
     </section>
 
+    <!-- COMPARISON -->
     <section id="compare" class="section">
       <div class="sectionHead">
         <div>
@@ -839,6 +858,7 @@
       </div>
     </section>
 
+    <!-- GALLERY (keeps your links) -->
     <section id="gallery" class="section">
       <div class="sectionHead">
         <div>
@@ -863,6 +883,7 @@
       </div>
     </section>
 
+    <!-- PRICING -->
     <section id="pricing" class="section">
       <div class="sectionHead">
         <div>
@@ -935,13 +956,14 @@
       </div>
     </section>
 
+    <!-- FINAL CTA -->
     <section class="section" style="padding-top: 30px;">
       <div class="ctaBlock">
-        <h2>Ready to make your recordings look premium?</h2>
+        <h2>Ready to make your tutorials look premium?</h2>
         <p class="emline">
           <strong>Showcase is for creators who care about details</strong> —
           the cursor, the framing, the pacing, the finish.
-          <span style="color:var(--muted2)">If you’re proud of your work, your recording should match that.</span>
+          <span style="color:var(--muted2)">If you’re proud of your work, your recording should match it.</span>
         </p>
         <div class="ctaRow" style="justify-content:center;">
           <a class="btn btnPrimary" href="https://tally.so/r/D4p48Z">Join the Showcase waitlist</a>
@@ -951,6 +973,7 @@
       </div>
     </section>
 
+    <!-- FOOTER -->
     <footer>
       <div class="wrap">
         <div class="footRow">
@@ -965,6 +988,7 @@
   </main>
 
   <script>
+    // ===== Custom cursor (subtle, modern) =====
     const cursor = document.querySelector(".cursor");
     let mx = 0, my = 0, cx = 0, cy = 0;
 
@@ -994,6 +1018,7 @@
       cursor.style.display = "none";
     }
 
+    // ===== Theme toggle + logo swap (keeps your logic) =====
     const logo = document.getElementById("logoImage");
     const heroPreviewImage = document.getElementById("heroPreviewImage");
     const previewToggles = document.querySelectorAll(".previewToggle");
@@ -1044,10 +1069,10 @@
       toggle.addEventListener("click", () => setPreview(toggle.dataset.target));
     });
 
+    // initialize theme from storage (default dark for this redesign)
     const saved = localStorage.getItem("theme");
     if (saved === "light" || saved === "dark") setTheme(saved);
     else setTheme("dark");
   </script>
 </body>
 </html>
-```
