@@ -1,1013 +1,999 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Showcase - Screen Recordings That Show Off</title>
-    
-    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/megdesigns/Showcase/main/photos/Showcaselogolightmode.png">
-    <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/megdesigns/Showcase/main/photos/Showcaselogolightmode.png">
-    
-    <meta name="description" content="Showcase is a screen recording tool for designers, developers, creators, and educators. Record with smart zoom, custom cursors, and branded webcam frames.">
-    
-    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --bg: #FAFAF9;
-            --text: #1A1A1A;
-            --text-muted: #666666;
-            --accent: #2D6CDF;
-            --border: #E5E5E5;
-            --card-bg: #FFFFFF;
-        }
-
-        [data-theme="dark"] {
-            --bg: #1A1A1A;
-            --text: #FAFAF9;
-            --text-muted: #999999;
-            --border: #444444;
-            --card-bg: #333333;
-        }
-
-        body {
-            font-family: 'DM Sans', sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.6;
-            overflow-x: hidden;
-            transition: background 0.3s ease, color 0.3s ease;
-        }
-
-        .custom-cursor {
-            width: 20px;
-            height: 20px;
-            border: 2px solid var(--text);
-            border-radius: 50%;
-            position: fixed;
-            pointer-events: none;
-            z-index: 9999;
-            transition: all 0.15s ease;
-            transform: translate(-50%, -50%);
-            mix-blend-mode: difference;
-        }
-
-        .custom-cursor.hover {
-            width: 40px;
-            height: 40px;
-            background: var(--text);
-            opacity: 0.3;
-        }
-
-        * { cursor: none; }
-        a, button { cursor: none; }
-
-        @media (hover: none) {
-            * { cursor: auto; }
-            .custom-cursor { display: none; }
-        }
-
-        header {
-            padding: 2rem 4rem;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-bottom: 1px solid var(--border);
-            background: var(--card-bg);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            backdrop-filter: blur(10px);
-        }
-
-        .header-container {
-            max-width: 1600px;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-family: 'Crimson Pro', serif;
-            font-size: 1.8rem;
-            font-weight: 600;
-            letter-spacing: -0.02em;
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-            color: var(--text);
-            transition: opacity 0.3s;
-        }
-
-        .logo:hover { opacity: 0.7; }
-
-        .header-right {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .mac-label {
-            font-size: 0.85rem;
-            font-weight: 600;
-            letter-spacing: 0.05em;
-            color: var(--text-muted);
-            padding: 0.5rem 1rem;
-            border: 2px solid var(--border);
-            border-radius: 2rem;
-        }
-
-        .theme-toggle {
-            background: var(--card-bg);
-            border: 2px solid var(--border);
-            padding: 0.5rem;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: all 0.3s;
-            width: 38px;
-            height: 38px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .theme-toggle:hover {
-            border-color: var(--text);
-            transform: translateY(-2px) rotate(15deg);
-        }
-
-        .theme-icon {
-            width: 18px;
-            height: 18px;
-        }
-
-        .theme-icon svg {
-            width: 100%;
-            height: 100%;
-            stroke: var(--text);
-        }
-
-        /* HERO - TWO COLUMN */
-        .hero {
-            padding: 8rem 4rem 4rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .hero-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .hero-content {
-            text-align: left;
-        }
-
-        .hero-content h1 {
-            font-family: 'Crimson Pro', serif;
-            font-size: 4.5rem;
-            font-weight: 600;
-            line-height: 1.05;
-            letter-spacing: -0.03em;
-            margin-bottom: 1.5rem;
-        }
-
-        .hero-content .subtitle {
-            font-size: 1.3rem;
-            color: var(--text-muted);
-            line-height: 1.7;
-            margin-bottom: 2.5rem;
-        }
-
-        .cta-container {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 0.75rem;
-        }
-
-        .primary-cta {
-            background: var(--text);
-            color: var(--bg);
-            padding: 1rem 2.5rem;
-            border-radius: 2rem;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 1.05rem;
-            border: 2px solid var(--text);
-            transition: all 0.3s;
-        }
-
-        .primary-cta:hover {
-            transform: translateY(-2px);
-            background: var(--bg);
-            color: var(--text);
-            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
-        }
-
-        .helper-text {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-        }
-
-        .hero-image img {
-            width: 100%;
-            height: auto;
-            border-radius: 1rem;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-            border: 1px solid var(--border);
-        }
-
-        /* MOCKUP GALLERY */
-        .mockup-gallery {
-            padding: 8rem 4rem;
-            background: var(--card-bg);
-            border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
-        }
-
-        .mockup-container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .mockup-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .mockup-header h2 {
-            font-family: 'Crimson Pro', serif;
-            font-size: 3.8rem;
-            font-weight: 600;
-            letter-spacing: -0.03em;
-            margin-bottom: 1rem;
-        }
-
-        .mockup-header p {
-            font-size: 1.2rem;
-            color: var(--text-muted);
-            line-height: 1.7;
-        }
-
-        .mockup-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-
-        .mockup-item {
-            border-radius: 1rem;
-            overflow: hidden;
-            box-shadow: 0 12px 40px rgba(0,0,0,0.08);
-            transition: transform 0.3s, box-shadow 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: transparent;
-        }
-
-        .mockup-item:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
-        }
-
-        .mockup-item img {
-            width: 100%;
-            height: auto;
-            display: block;
-            object-fit: cover;
-        }
-
-        /* PROBLEM SECTION */
-        .problem-section {
-            padding: 8rem 4rem;
-            background: var(--bg);
-        }
-
-        .problem-container {
-            max-width: 900px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .problem-container h2 {
-            font-family: 'Crimson Pro', serif;
-            font-size: 4.5rem;
-            font-weight: 600;
-            line-height: 1.15;
-            letter-spacing: -0.03em;
-            margin-bottom: 1.5rem;
-        }
-
-        .problem-container p {
-            font-size: 1.3rem;
-            color: var(--text-muted);
-            line-height: 1.7;
-        }
-
-        /* COMPARISON */
-        .comparison-section {
-            padding: 8rem 4rem;
-            max-width: 1400px;
-            margin: 0 auto;
-            background: var(--card-bg);
-        }
-
-        .comparison-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .comparison-header h2 {
-            font-family: 'Crimson Pro', serif;
-            font-size: 3.5rem;
-            font-weight: 600;
-            letter-spacing: -0.03em;
-            margin-bottom: 1rem;
-        }
-
-        .comparison-header p {
-            font-size: 1.2rem;
-            color: var(--text-muted);
-        }
-
-        .comparison-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-
-        .comparison-card {
-            border: 2px solid var(--border);
-            border-radius: 1rem;
-            padding: 2.5rem 2rem;
-            background: var(--card-bg);
-            transition: all 0.3s;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-            outline: 2px solid var(--border);
-            outline-offset: -2px;
-        }
-
-        .comparison-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 12px 40px rgba(0,0,0,0.1);
-            border-color: var(--text);
-        }
-
-        .comparison-card.featured {
-            background: var(--text);
-            color: var(--bg);
-            border-color: var(--text);
-        }
-
-        .comparison-card-title {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            text-align: center;
-        }
-
-        .comparison-card.featured .comparison-card-title {
-            color: var(--bg);
-        }
-
-        .comparison-features {
-            list-style: none;
-        }
-
-        .comparison-features li {
-            padding: 0.8rem 0;
-            border-bottom: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            font-size: 0.9rem;
-        }
-
-        .comparison-card.featured .comparison-features li {
-            border-bottom-color: rgba(255, 255, 255, 0.2);
-        }
-
-        .comparison-features li:last-child {
-            border-bottom: none;
-        }
-
-        .feature-icon {
-            font-size: 1rem;
-            font-weight: 700;
-            min-width: 18px;
-        }
-
-        .feature-icon.check { color: #10B981; }
-        .feature-icon.cross { color: #EF4444; }
-        .comparison-card.featured .feature-icon.check { color: #34D399; }
-
-        /* FEATURES */
-        .features {
-            padding: 8rem 4rem;
-            max-width: 1800px;
-            margin: 0 auto;
-            background: var(--bg);
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 5rem;
-        }
-
-        .section-header h2 {
-            font-family: 'Crimson Pro', serif;
-            font-size: 4.5rem;
-            font-weight: 600;
-            letter-spacing: -0.03em;
-        }
-
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 0;
-            border: 2px solid var(--border);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-        }
-
-        .feature-card {
-            padding: 3rem 2.5rem;
-            border-right: 2px solid var(--border);
-            background: var(--card-bg);
-            transition: all 0.3s;
-        }
-
-        .feature-card:last-child { border-right: none; }
-
-        .feature-card:hover {
-            background: var(--bg);
-            transform: scale(1.05);
-            z-index: 10;
-            box-shadow: 0 12px 40px rgba(0,0,0,0.1);
-        }
-
-        .feature-number {
-            font-family: 'Crimson Pro', serif;
-            font-size: 2.5rem;
-            font-weight: 600;
-            color: var(--text-muted);
-            margin-bottom: 1rem;
-            line-height: 1;
-            transition: all 0.3s;
-        }
-
-        .feature-card:hover .feature-number {
-            transform: scale(1.1);
-            color: var(--text);
-        }
-
-        .feature-card h3 {
-            font-size: 1.4rem;
-            margin-bottom: 0.75rem;
-            font-weight: 600;
-        }
-
-        .feature-card p {
-            color: var(--text-muted);
-            line-height: 1.6;
-            font-size: 0.95rem;
-        }
-
-        /* PRICING */
-        .pricing {
-            padding: 8rem 4rem;
-            background: var(--card-bg);
-            border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
-        }
-
-        .pricing-container {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .pricing h2 {
-            font-family: 'Crimson Pro', serif;
-            font-size: 4.5rem;
-            font-weight: 600;
-            letter-spacing: -0.03em;
-            text-align: center;
-            margin-bottom: 1.5rem;
-        }
-
-        .pricing-copy {
-            text-align: center;
-            font-size: 1.2rem;
-            color: var(--text-muted);
-            margin-bottom: 3rem;
-            line-height: 1.8;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .pricing-cards {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            margin-top: 4rem;
-        }
-
-        .pricing-card {
-            padding: 2rem 1.5rem;
-            border-radius: 1rem;
-            border: 2px solid var(--border);
-            transition: border-color 0.3s, transform 0.3s;
-            display: flex;
-            flex-direction: column;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-            outline: 2px solid var(--border);
-            outline-offset: -2px;
-        }
-
-        .pricing-card:hover {
-            border-color: var(--text);
-            transform: translateY(-4px);
-            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-        }
-
-        .pricing-card.featured {
-            border-color: var(--text);
-            background: var(--text);
-            color: var(--bg);
-        }
-
-        .pricing-card.featured h3,
-        .pricing-card.featured p {
-            color: var(--bg);
-        }
-
-        .pricing-card.featured .price { color: var(--bg); }
-
-        .plan-name {
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 0.8rem;
-            color: var(--text-muted);
-        }
-
-        .pricing-card.featured .plan-name { color: rgba(255,255,255,0.7); }
-
-        .price {
-            font-family: 'Crimson Pro', serif;
-            font-size: 2.5rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            filter: blur(10px);
-            user-select: none;
-        }
-
-        .price-period {
-            font-size: 1rem;
-            color: var(--text-muted);
-            margin-bottom: 1.2rem;
-            filter: blur(8px);
-            user-select: none;
-        }
-
-        .pricing-card.featured .price-period { color: rgba(255,255,255,0.7); }
-
-        .pricing-features {
-            list-style: none;
-            margin-bottom: 1rem;
-            flex-grow: 1;
-        }
-
-        .pricing-features li {
-            padding: 0.5rem 0;
-            border-bottom: 1px solid var(--border);
-            font-size: 0.95rem;
-        }
-
-        .pricing-card.featured .pricing-features li {
-            border-bottom-color: rgba(255,255,255,0.2);
-        }
-
-        .feature-blurred {
-            filter: blur(6px);
-            opacity: 0.4;
-            user-select: none;
-            pointer-events: none;
-        }
-
-        .pricing-btn {
-            width: 100%;
-            padding: 1rem;
-            border-radius: 2rem;
-            border: 2px solid var(--text);
-            background: var(--text);
-            color: var(--bg);
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-size: 1rem;
-            margin-top: auto;
-        }
-
-        .pricing-btn:hover {
-            background: var(--bg);
-            color: var(--text);
-            transform: translateY(-2px);
-        }
-
-        .pricing-card.featured .pricing-btn {
-            background: var(--bg);
-            color: var(--text);
-            border-color: var(--bg);
-        }
-
-        .pricing-card.featured .pricing-btn:hover {
-            background: var(--text);
-            color: var(--bg);
-            border-color: var(--text);
-        }
-
-        /* FINAL CTA */
-        .final-cta {
-            padding: 8rem 4rem;
-            background: var(--bg);
-            text-align: center;
-        }
-
-        .final-cta h2 {
-            font-family: 'Crimson Pro', serif;
-            font-size: 4.5rem;
-            font-weight: 600;
-            letter-spacing: -0.03em;
-            margin-bottom: 2rem;
-        }
-
-        .final-cta .cta-container {
-            align-items: center;
-        }
-
-        .final-cta .primary-cta {
-            font-size: 1.15rem;
-            padding: 1.2rem 3rem;
-        }
-
-        /* FOOTER */
-        footer {
-            padding: 4rem;
-            text-align: center;
-            color: var(--text-muted);
-            background: var(--card-bg);
-            border-top: 1px solid var(--border);
-        }
-
-        footer p { margin-bottom: 1rem; }
-        footer a {
-            color: var(--text);
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        /* RESPONSIVE */
-        @media (max-width: 1024px) {
-            .hero { padding: 6rem 3rem 3rem; }
-            .hero-container {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-            }
-            .hero-content { text-align: center; }
-            .cta-container { align-items: center; }
-            .hero-content h1 { font-size: 3.5rem; }
-            .mockup-grid { grid-template-columns: repeat(2, 1fr); }
-            .comparison-grid { grid-template-columns: 1fr; }
-            .feature-grid { grid-template-columns: repeat(2, 1fr); }
-            .pricing-cards { grid-template-columns: 1fr; }
-        }
-
-        @media (max-width: 768px) {
-            header { padding: 1rem; }
-            .logo { font-size: 1.2rem; }
-            .logo img { height: 26px; }
-            .mac-label {
-                font-size: 0.7rem;
-                padding: 0.35rem 0.7rem;
-            }
-            .theme-toggle {
-                width: 34px;
-                height: 34px;
-            }
-            .hero { padding: 2.5rem 1rem 1.5rem; }
-            .hero-content h1 {
-                font-size: 1.8rem;
-                line-height: 1.15;
-            }
-            .hero-content .subtitle { font-size: 0.95rem; }
-            .primary-cta {
-                padding: 0.85rem 1.75rem;
-                font-size: 0.9rem;
-            }
-            .mockup-gallery { padding: 3rem 1rem; }
-            .mockup-header h2 { font-size: 2rem; }
-            .mockup-grid { grid-template-columns: 1fr; gap: 1rem; }
-            
-            /* Make sure mockup items have transparent backgrounds on mobile */
-            .mockup-item {
-                background: transparent;
-            }
-            
-            .problem-section { padding: 3rem 1rem; }
-            .problem-container h2 { font-size: 1.6rem; }
-            .comparison-section { padding: 3rem 1rem; }
-            .comparison-header h2 { font-size: 1.6rem; }
-            
-            /* Fix comparison card borders on mobile */
-            .comparison-card {
-                border-width: 2px;
-            }
-            
-            .features { padding: 3rem 1rem; }
-            .section-header h2 { font-size: 1.6rem; }
-            .feature-grid { grid-template-columns: 1fr; }
-            .feature-card {
-                border-right: none;
-                border-bottom: 2px solid var(--border);
-                padding: 1.75rem 1.25rem;
-            }
-            .feature-card:last-child { border-bottom: none; }
-            
-            /* Fix pricing card borders on mobile */
-            .pricing { padding: 3rem 1rem; }
-            .pricing h2 { font-size: 1.6rem; }
-            .pricing-card {
-                border-width: 2px;
-            }
-            
-            .final-cta { padding: 3rem 1rem; }
-            .final-cta h2 { font-size: 1.6rem; }
-            .final-cta .cta-container {
-                align-items: center;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Showcase — Screen recordings that show off</title>
+
+  <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/megdesigns/Showcase/main/photos/Showcaselogolightmode.png" />
+  <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/megdesigns/Showcase/main/photos/Showcaselogolightmode.png" />
+  <meta name="description" content="Showcase is a screen recording tool for designers, developers, creators, and educators. Record with smart zoom, custom cursors, and branded webcam frames." />
+
+  <style>
+    :root{
+      --bg: #333333;
+      --surface: rgba(255,255,255,.06);
+      --surface2: rgba(255,255,255,.08);
+      --stroke: rgba(255,255,255,.10);
+      --stroke2: rgba(255,255,255,.14);
+
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.66);
+      --muted2: rgba(255,255,255,.48);
+
+      --brand: #ffffff;
+      --brand2:#cfcfcf;
+      --ring: rgba(255,255,255,.22);
+      --hover-bg: #4a4a4a;
+      --hover-border: #8a8a8a;
+      --hover-text: #ffffff;
+      --primary-bg: #ffffff;
+      --primary-bg-hover: #ececec;
+      --primary-text: #111111;
+
+      --shadow: 0 30px 80px rgba(0,0,0,.50);
+      --shadow2: 0 14px 40px rgba(0,0,0,.35);
+
+      --radius-xl: 28px;
+      --radius-lg: 20px;
+      --radius-md: 16px;
+      --radius-sm: 12px;
+
+      --max: 1200px;
+
+      --font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI",
+              Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    [data-theme="light"]{
+      --bg: #ffffff;
+      --surface: rgba(0,0,0,.04);
+      --surface2: rgba(0,0,0,.06);
+      --stroke: rgba(0,0,0,.10);
+      --stroke2: rgba(0,0,0,.14);
+
+      --text: rgba(0,0,0,.88);
+      --muted: rgba(0,0,0,.62);
+      --muted2: rgba(0,0,0,.46);
+      --brand: #111111;
+      --brand2:#5a5a5a;
+      --ring: rgba(0,0,0,.16);
+      --hover-bg: #f1f1f1;
+      --hover-border: #cfcfcf;
+      --hover-text: #111111;
+      --primary-bg: #111111;
+      --primary-bg-hover: #000000;
+      --primary-text: #ffffff;
+
+      --shadow: 0 30px 80px rgba(0,0,0,.14);
+      --shadow2: 0 14px 40px rgba(0,0,0,.12);
+    }
+
+    *{ box-sizing:border-box; margin:0; padding:0; }
+    html,body{ height:100%; }
+    body{
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      overflow-x:hidden;
+    }
+
+    a{ color:inherit; text-decoration:none; }
+    img{ max-width:100%; display:block; }
+
+    .wrap{ max-width: var(--max); margin:0 auto; padding: 0 22px; }
+
+    .cursor{
+      width: 14px; height: 14px; border-radius: 50%;
+      border: 1.5px solid rgba(255,255,255,.55);
+      position: fixed; left:0; top:0;
+      transform: translate(-50%,-50%);
+      pointer-events:none; z-index:9999;
+      mix-blend-mode: difference;
+      opacity:.9;
+      transition: width .16s ease, height .16s ease, opacity .16s ease, background .16s ease;
+    }
+    .cursor.hover{
+      width: 34px; height: 34px;
+      background: rgba(255,255,255,.24);
+      opacity:.8;
+    }
+    @media (hover: none){ .cursor{ display:none; } }
+    @media (prefers-reduced-motion: reduce){
+      .cursor{ display:none; }
+      *{ scroll-behavior:auto !important; transition:none !important; animation:none !important; }
+    }
+
+    .nav{
+      position: sticky; top:0; z-index: 120;
+      backdrop-filter: blur(14px);
+      background: var(--bg);
+      border-bottom: 1px solid var(--stroke);
+    }
+    .navInner{
+      display:flex; align-items:center; justify-content:space-between;
+      padding: 14px 0;
+      gap: 16px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      font-weight: 650;
+      letter-spacing: -0.02em;
+    }
+    .brand img{ width:28px; height:28px; }
+    .navLinks{
+      display:flex; gap: 16px; align-items:center;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .navLinks a{
+      padding: 10px 10px;
+      border-radius: 12px;
+      border: 1px solid transparent;
+      transition: background .18s ease, color .18s ease;
+    }
+    .navLinks a:hover{ background: var(--hover-bg); border-color: var(--hover-border); color: var(--hover-text); }
+    .navRight{
+      display:flex; align-items:center; gap:10px;
+    }
+
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--stroke);
+      background: var(--surface);
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: .02em;
+      white-space: nowrap;
+    }
+    .dot{
+      width: 8px; height:8px; border-radius:50%;
+      background: var(--brand);
+      box-shadow: 0 0 0 6px var(--ring);
+    }
+
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      border-radius: 999px;
+      padding: 10px 14px;
+      border: 1px solid var(--stroke2);
+      background: var(--surface);
+      color: var(--text);
+      font-weight: 600;
+      font-size: 14px;
+      transition: transform .18s ease, background .18s ease, border-color .18s ease;
+    }
+    .btn:hover{ transform: translateY(-1px); background: var(--hover-bg); border-color: var(--hover-border); color: var(--hover-text); }
+    .btnPrimary{
+      background: var(--primary-bg);
+      border: 1px solid var(--primary-bg);
+      color: var(--primary-text);
+    }
+    .btnPrimary:hover{
+      transform: translateY(-2px);
+      background: var(--primary-bg-hover);
+      border-color: var(--primary-bg-hover);
+      color: var(--primary-text);
+    }
+
+    .iconBtn{
+      width: 40px; height: 40px;
+      border-radius: 999px;
+      border: 1px solid var(--stroke);
+      background: var(--surface);
+      display:flex; align-items:center; justify-content:center;
+      transition: transform .18s ease, background .18s ease, border-color .18s ease;
+      cursor:pointer;
+    }
+    .iconBtn:hover{ transform: translateY(-1px); background: var(--hover-bg); border-color: var(--hover-border); color: var(--hover-text); }
+    .iconBtn svg{ width:18px; height:18px; opacity:.9; }
+
+    .emline{
+      font-size: clamp(18px, 2.2vw, 22px);
+      color: var(--muted);
+      line-height: 1.65;
+    }
+    .emline strong{
+      color: var(--text);
+      font-weight: 750;
+      letter-spacing: -0.01em;
+    }
+
+    .hero{
+      padding: 64px 0 22px;
+    }
+    .heroGrid{
+      display:grid;
+      grid-template-columns: 1.08fr .92fr;
+      gap: 34px;
+      align-items: center;
+    }
+    .h1{
+      font-size: clamp(36px, 5.2vw, 64px);
+      line-height: 1.03;
+      letter-spacing: -0.035em;
+      font-weight: 800;
+      margin-bottom: 14px;
+      color: var(--muted);
+    }
+    .h1 .headlineAccent{ color: var(--text); }
+    .sub{
+      margin-bottom: 22px;
+      max-width: 56ch;
+    }
+
+    .ctaRow{
+      display:flex; align-items:center; gap: 12px; flex-wrap:wrap;
+      margin: 18px 0 8px;
+    }
+    .helper{
+      color: var(--muted2);
+      font-size: 13px;
+      margin-top: 8px;
+    }
+
+    .heroCard{
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--stroke);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .heroCardTop{
+      display:flex; align-items:center; justify-content:space-between;
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--stroke);
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .heroCardTop .mini{
+      display:flex; align-items:center; gap:10px;
+    }
+    .miniChip{
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(0,0,0,.25);
+      border: 1px solid var(--stroke);
+      color: rgba(255,255,255,.72);
+      font-size: 12px;
+      cursor: pointer;
+      transition: background .18s ease, border-color .18s ease, color .18s ease;
+    }
+    [data-theme="light"] .miniChip{
+      background: rgba(255,255,255,.70);
+      color: rgba(0,0,0,.62);
+    }
+    .miniChip:hover{
+      background: var(--hover-bg);
+      border-color: var(--hover-border);
+      color: var(--hover-text);
+    }
+    .miniChip[aria-pressed="true"]{
+      background: var(--text);
+      border-color: var(--text);
+      color: var(--bg);
+    }
+    .heroCardMedia{ padding: 16px; }
+    .heroCardMedia img{
+      border-radius: 18px;
+      border: 1px solid var(--stroke);
+      box-shadow: var(--shadow2);
+    }
+
+    .section{ padding: 72px 0; }
+    .sectionHead{
+      display:flex;
+      justify-content:space-between;
+      gap: 18px;
+      align-items:flex-end;
+      margin-bottom: 26px;
+    }
+    .sectionTitle{
+      font-size: clamp(22px, 2.6vw, 34px);
+      letter-spacing:-0.02em;
+      font-weight: 820;
+      line-height:1.1;
+    }
+    .sectionDesc{
+      max-width: 62ch;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .storyGrid{
+      display:grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 14px;
+    }
+    .storyCard{
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--stroke);
+      background: var(--surface);
+      padding: 18px 18px 16px;
+      transition: transform .18s ease, background .18s ease, border-color .18s ease;
+      min-height: 170px;
+    }
+    .storyCard:hover{
+      transform: translateY(-3px);
+      background: var(--hover-bg);
+      border-color: var(--hover-border);
+    }
+    .storyNum{
+      color: var(--muted2);
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .storyCard h3{
+      font-size: 16px;
+      font-weight: 780;
+      letter-spacing: -0.01em;
+      margin-bottom: 8px;
+    }
+    .storyCard p{ color: var(--muted); font-size: 14px; line-height: 1.7; }
+
+    .spotlight{
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+    .panel{
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--stroke);
+      background: var(--surface);
+      overflow:hidden;
+    }
+    .panelPad{ padding: 18px; }
+    .panelMedia{
+      padding: 18px;
+      background: var(--surface);
+    }
+    .panelMedia img{
+      border-radius: 18px;
+      border: 1px solid var(--stroke);
+      box-shadow: var(--shadow2);
+    }
+    .bullets{
+      list-style:none;
+      display:flex; flex-direction:column; gap: 10px;
+      margin-top: 14px;
+    }
+    .bullet{
+      display:flex; gap:10px; align-items:flex-start;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+      padding: 10px 12px;
+      border-radius: 14px;
+      border: 1px solid var(--stroke);
+      background: rgba(0,0,0,.12);
+    }
+    [data-theme="light"] .bullet{ background: rgba(255,255,255,.55); }
+    .check{
+      width:18px; height:18px; border-radius: 6px;
+      background: rgba(255,255,255,.12);
+      border: 1px solid var(--stroke2);
+      display:inline-flex; align-items:center; justify-content:center;
+      flex: 0 0 auto;
+      margin-top: 1px;
+    }
+    .check svg{ width:12px; height:12px; }
+
+    .gallery{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    .shot{
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--stroke);
+      background: var(--surface);
+      overflow:hidden;
+      box-shadow: var(--shadow2);
+      transition: transform .18s ease, border-color .18s ease;
+    }
+    .shot:hover{ transform: translateY(-3px); border-color: var(--hover-border); background: var(--hover-bg); }
+    .shot img{ width:100%; height:auto; }
+
+    .compareGrid{
+      display:grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 14px;
+    }
+    .compareCard{
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--stroke);
+      background: var(--surface);
+      padding: 18px;
+      transition: transform .18s ease, border-color .18s ease, background .18s ease;
+      box-shadow: var(--shadow2);
+    }
+    .compareCard:hover{ transform: translateY(-3px); border-color: var(--hover-border); background: var(--hover-bg); }
+    .compareCard.featured{
+      background: var(--surface2);
+      border-color: var(--stroke2);
+    }
+    .compareTitle{
+      display:flex; align-items:center; justify-content:space-between;
+      margin-bottom: 12px;
+      font-weight: 820;
+      letter-spacing:-0.01em;
+    }
+    .badge{
+      font-size: 12px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,.08);
+      color: var(--muted);
+    }
+    .compareList{
+      list-style:none;
+      display:flex; flex-direction:column;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .liRow{
+      display:flex; align-items:center; gap:10px;
+      color: var(--muted);
+      font-size: 14px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      border: 1px solid var(--stroke);
+      background: rgba(0,0,0,.10);
+    }
+    [data-theme="light"] .liRow{ background: rgba(255,255,255,.55); }
+    .ok{ color: var(--text); font-weight: 900; }
+    .no{ color: var(--muted2); font-weight: 900; }
+    #compare .ok{ color: #22c55e; }
+    #compare .no{ color: #ef4444; }
+
+    .pricingGrid{
+      display:grid;
+      grid-template-columns: 1.1fr .95fr .95fr;
+      gap: 14px;
+      align-items: stretch;
+    }
+    .priceCard{
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--stroke);
+      background: var(--surface);
+      padding: 18px;
+      box-shadow: var(--shadow2);
+      display:flex;
+      flex-direction:column;
+      gap: 12px;
+      transition: transform .18s ease, border-color .18s ease, background .18s ease;
+      min-height: 360px;
+    }
+    .priceCard:hover{ transform: translateY(-3px); border-color: var(--hover-border); background: var(--hover-bg); }
+    .priceCard.featured{
+      border-color: var(--stroke2);
+      background: var(--surface2);
+    }
+    .plan{
+      display:flex; align-items:center; justify-content:space-between;
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      font-weight: 750;
+    }
+    .money{
+      font-size: 40px;
+      font-weight: 900;
+      letter-spacing:-0.03em;
+      line-height: 1;
+    }
+    .period{
+      color: var(--muted);
+      margin-top: -4px;
+      font-size: 14px;
+    }
+    .feat{
+      list-style:none;
+      display:flex; flex-direction:column; gap: 8px;
+      margin-top: 8px;
+      flex:1;
+    }
+    .feat li{
+      color: var(--muted);
+      font-size: 14px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      border: 1px solid var(--stroke);
+      background: rgba(0,0,0,.10);
+      display:flex; align-items:center; gap:10px;
+    }
+    [data-theme="light"] .feat li{ background: rgba(255,255,255,.55); }
+    .blur{
+      filter: blur(6px);
+      opacity: .45;
+      user-select:none;
+      pointer-events:none;
+    }
+
+    .ctaBlock{
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--stroke);
+      background: var(--surface);
+      padding: 26px;
+      box-shadow: var(--shadow);
+      text-align:center;
+    }
+    .ctaBlock h2{
+      font-size: clamp(24px, 3.1vw, 40px);
+      letter-spacing:-0.03em;
+      font-weight: 900;
+      margin-bottom: 10px;
+    }
+    .ctaBlock p{
+      color: var(--muted);
+      max-width: 70ch;
+      margin: 0 auto 16px;
+      line-height: 1.7;
+      font-size: 15px;
+    }
+
+    footer{
+      padding: 34px 0 44px;
+      border-top: 1px solid var(--stroke);
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .footRow{
+      display:flex; justify-content:space-between; align-items:center; gap: 12px;
+      flex-wrap:wrap;
+    }
+    .footRow a{ color: var(--text); font-weight: 700; }
+
+    @media (max-width: 980px){
+      .heroGrid{ grid-template-columns: 1fr; }
+      .storyGrid{ grid-template-columns: 1fr; }
+      .spotlight{ grid-template-columns: 1fr; }
+      .gallery{ grid-template-columns: 1fr; }
+      .compareGrid{ grid-template-columns: 1fr; }
+      .pricingGrid{ grid-template-columns: 1fr; }
+      .navLinks{ display:none; }
+    }
+  </style>
 </head>
+
 <body>
-    <div class="custom-cursor"></div>
-    
-    <header>
-        <div class="header-container">
-            <a href="#" class="logo">
-                <img id="logoImage" src="https://raw.githubusercontent.com/megdesigns/Showcase/main/photos/showcaselogolightmode.png" alt="Showcase Logo" style="height: 32px; margin-right: 8px;">
-                Showcase
-            </a>
-            <div class="header-right">
-                <div class="mac-label">macOS</div>
-                <button class="theme-toggle" onclick="toggleTheme()">
-                    <span class="theme-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="12" cy="12" r="5"></circle>
-                            <line x1="12" y1="1" x2="12" y2="3"></line>
-                            <line x1="12" y1="21" x2="12" y2="23"></line>
-                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                            <line x1="1" y1="12" x2="3" y2="12"></line>
-                            <line x1="21" y1="12" x2="23" y2="12"></line>
-                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                        </svg>
-                    </span>
-                </button>
-            </div>
-        </div>
-    </header>
+  <div class="cursor" aria-hidden="true"></div>
 
-    <!-- HERO TWO COLUMN -->
+  <header class="nav">
+    <div class="wrap">
+      <div class="navInner">
+        <a class="brand" href="#">
+          <img id="logoImage" src="https://raw.githubusercontent.com/megdesigns/Showcase/main/photos/showcaselogodarkmode.png" alt="Showcase logo" />
+          <span>Showcase</span>
+        </a>
+
+        <nav class="navLinks" aria-label="Primary">
+          <a href="#story">Why it exists</a>
+          <a href="#features">What it does</a>
+          <a href="#gallery">Design</a>
+          <a href="#pricing">Pricing</a>
+        </nav>
+
+        <div class="navRight">
+          <span class="pill"><span class="dot"></span> macOS • in progress</span>
+          <a class="btn btnPrimary" href="https://tally.so/r/D4p48Z">Join the waitlist</a>
+          <button class="iconBtn" type="button" onclick="toggleTheme()" aria-label="Toggle theme">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="5"></circle>
+              <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
     <section class="hero">
-        <div class="hero-container">
-            <div class="hero-content">
-                <h1>Screen recordings that show off</h1>
-                <p class="subtitle">Showcase is a screen recording tool for designers, developers, creators, and educators who want their tutorials to look as polished as their work.</p>
-                <div class="cta-container">
-                    <a href="https://tally.so/r/D4p48Z" class="primary-cta">Join the waitlist</a>
-                    <p class="helper-text">No spam. Just early access.</p>
-                </div>
-            </div>
-            <div class="hero-image">
-                <img src="https://raw.githubusercontent.com/megdesigns/Showcase/main/photos/hero-app.png" alt="Showcase App">
-            </div>
+      <div class="heroGrid">
+        <div>
+          <h1 class="h1">Screen recordings that <span class="headlineAccent">show off</span>.</h1>
+
+          <p class="emline sub">
+            <strong>Showcase helps your tutorials look as polished as your work</strong> —
+            so your screen recordings don’t feel like an afterthought.
+            <span style="color:var(--muted2)">No default cursors. No boring exports. No “good enough.”</span>
+          </p>
+
+          <div class="ctaRow">
+            <a class="btn btnPrimary" href="https://tally.so/r/D4p48Z">Join the waitlist</a>
+            <a class="btn" href="#features">See what makes it different</a>
+          </div>
+          <div class="helper">No spam. Just early access + launch perks.</div>
         </div>
+
+        <div class="heroCard" aria-label="Product preview">
+          <div class="heroCardTop">
+            <div class="mini">
+              <button class="miniChip previewToggle" type="button" data-target="control" aria-pressed="true">Control Bar</button>
+              <button class="miniChip previewToggle" type="button" data-target="settings" aria-pressed="false">Settings</button>
+            </div>
+            <span>Preview</span>
+          </div>
+          <div class="heroCardMedia">
+            <img id="heroPreviewImage" src="https://raw.githubusercontent.com/megdesigns/Showcase/main/photos/hero-app.png" alt="Showcase app preview" />
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- PROBLEM -->
-    <section class="problem-section">
-        <div class="problem-container">
-            <h2>Screen recordings don't have to look generic</h2>
-            <p>Showcase helps you create recordings that match the quality of your work. No more default cursors, boring frames, or lifeless exports.</p>
+    <section id="story" class="section">
+      <div class="sectionHead">
+        <div>
+          <div class="sectionTitle">Recording is easy. Making it look good isn’t.</div>
+          <p class="sectionDesc">
+            Most tools are built to capture your screen. Showcase is built to <strong>present</strong> it —
+            with the same care you put into your designs, code, lessons, or walkthroughs.
+          </p>
         </div>
+      </div>
+
+      <div class="storyGrid">
+        <div class="storyCard">
+          <div class="storyNum">Problem</div>
+          <h3>Your work is clean. Your recording shouldn’t look generic.</h3>
+          <p>Default cursors, awkward framing, and “flat” exports make even great demos feel low-effort.</p>
+        </div>
+        <div class="storyCard">
+          <div class="storyNum">Insight</div>
+          <h3>Viewers follow focus, not pixels.</h3>
+          <p>When clicks and key moments are emphasized, your audience stays locked in — and learns faster.</p>
+        </div>
+        <div class="storyCard">
+          <div class="storyNum">Solution</div>
+          <h3>Capture → polish → publish, in one flow.</h3>
+          <p>Showcase bakes in zoom, cursor styling, and camera framing so the final video feels intentional.</p>
+        </div>
+      </div>
     </section>
 
-    <!-- COMPARISON -->
-    <section class="comparison-section">
-        <div class="comparison-header">
-            <h2>How Showcase compares</h2>
-            <p>Built for creators who care about details</p>
+    <section id="features" class="section">
+      <div class="sectionHead">
+        <div>
+          <div class="sectionTitle">Built around the details people actually notice.</div>
+          <p class="sectionDesc">
+            <span class="emline">
+              <strong>Every interaction is a cue.</strong> Showcase makes those cues look deliberate —
+              <span style="color:var(--muted2)">so your content feels premium without extra editing.</span>
+            </span>
+          </p>
         </div>
-        <div class="comparison-grid">
-            <div class="comparison-card featured">
-                <h3 class="comparison-card-title">Showcase</h3>
-                <ul class="comparison-features">
-                    <li><span class="feature-icon check">✓</span> Smart zoom on clicks</li>
-                    <li><span class="feature-icon check">✓</span> Custom webcam frames</li>
-                    <li><span class="feature-icon check">✓</span> Branded cursor styles</li>
-                    <li><span class="feature-icon check">✓</span> One-click export</li>
-                    <li><span class="feature-icon check">✓</span> Simple interface</li>
-                    <li><span class="feature-icon check">✓</span> Free + Premium</li>
-                </ul>
-            </div>
-            <div class="comparison-card">
-                <h3 class="comparison-card-title">Generic Tools</h3>
-                <ul class="comparison-features">
-                    <li><span class="feature-icon cross">✗</span> Auto-zoom on clicks</li>
-                    <li><span class="feature-icon cross">✗</span> Custom webcam frames</li>
-                    <li><span class="feature-icon cross">✗</span> Branded cursor styles</li>
-                    <li><span class="feature-icon check">✓</span> One-click export</li>
-                    <li><span class="feature-icon check">✓</span> Simple interface</li>
-                    <li><span class="feature-icon check">✓</span> Free only</li>
-                </ul>
-            </div>
-            <div class="comparison-card">
-                <h3 class="comparison-card-title">Pro Tools</h3>
-                <ul class="comparison-features">
-                    <li><span class="feature-icon cross">✗</span> Auto-zoom on clicks</li>
-                    <li><span class="feature-icon check">✓</span> Custom webcam frames</li>
-                    <li><span class="feature-icon cross">✗</span> Branded cursor styles</li>
-                    <li><span class="feature-icon cross">✗</span> One-click export</li>
-                    <li><span class="feature-icon cross">✗</span> Complex interface</li>
-                    <li><span class="feature-icon cross">✗</span> Expensive ($$$)</li>
-                </ul>
-            </div>
+      </div>
+
+      <div class="spotlight">
+        <div class="panel">
+          <div class="panelMedia">
+            <img src="https://raw.githubusercontent.com/megdesigns/Showcase/main/photos/hero-app.png" alt="Showcase interface showing control bar and settings" />
+          </div>
         </div>
+
+        <div class="panel">
+          <div class="panelPad">
+            <div class="pill" style="display:inline-flex; margin-bottom: 10px;">
+              <span class="dot" style="background:var(--brand2); box-shadow: 0 0 0 6px var(--ring)"></span>
+              What you’ll feel immediately
+            </div>
+
+            <ul class="bullets">
+              <li class="bullet">
+                <span class="check">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                    <path d="M20 6L9 17l-5-5"></path>
+                  </svg>
+                </span>
+                <span><strong style="color:var(--text)">Smart zoom</strong> that follows intent — zoom on clicks and key actions so viewers never lose context.</span>
+              </li>
+              <li class="bullet">
+                <span class="check">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                    <path d="M20 6L9 17l-5-5"></path>
+                  </svg>
+                </span>
+                <span><strong style="color:var(--text)">Cursor styling</strong> for brand + clarity — size, color, click feedback that looks “designed.”</span>
+              </li>
+              <li class="bullet">
+                <span class="check">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                    <path d="M20 6L9 17l-5-5"></path>
+                  </svg>
+                </span>
+                <span><strong style="color:var(--text)">Webcam frames</strong> that don’t scream “default overlay” — clean shapes, consistent spacing, polished presence.</span>
+              </li>
+              <li class="bullet">
+                <span class="check">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                    <path d="M20 6L9 17l-5-5"></path>
+                  </svg>
+                </span>
+                <span><strong style="color:var(--text)">Fast export</strong> optimized for web + social — fewer steps, less fiddling, more shipping.</span>
+              </li>
+            </ul>
+
+            <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
+              <a class="btn btnPrimary" href="https://tally.so/r/D4p48Z">Get early access</a>
+              <a class="btn" href="#compare">Compare tools</a>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- FEATURES -->
-    <section class="features">
-        <div class="section-header">
-            <h2>Features that make your recordings stand out</h2>
+    <section id="compare" class="section">
+      <div class="sectionHead">
+        <div>
+          <div class="sectionTitle">How Showcase compares</div>
+          <p class="sectionDesc">Not another screen recorder. A recorder made for people who care about presentation.</p>
         </div>
-        <div class="feature-grid">
-            <div class="feature-card">
-                <div class="feature-number">01</div>
-                <h3>Smart Zoom</h3>
-                <p>Automatically follow your cursor and zoom on key actions to keep viewers engaged.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-number">02</div>
-                <h3>Custom Cursors</h3>
-                <p>Change cursor color, size, and click animations to match your brand.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-number">03</div>
-                <h3>Webcam Frames</h3>
-                <p>Add professional webcam overlays with customizable shapes and styles.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-number">04</div>
-                <h3>Quick Export</h3>
-                <p>Export in seconds with optimized settings for web, social, or HD.</p>
-            </div>
+      </div>
+
+      <div class="compareGrid">
+        <div class="compareCard featured">
+          <div class="compareTitle">
+            <span>Showcase</span>
+            <span class="badge">Designed for polish</span>
+          </div>
+          <ul class="compareList">
+            <li class="liRow"><span class="ok">✓</span> Smart zoom on clicks</li>
+            <li class="liRow"><span class="ok">✓</span> Branded cursor styles</li>
+            <li class="liRow"><span class="ok">✓</span> Clean webcam frames</li>
+            <li class="liRow"><span class="ok">✓</span> Simple interface</li>
+            <li class="liRow"><span class="ok">✓</span> Fast export</li>
+          </ul>
         </div>
+
+        <div class="compareCard">
+          <div class="compareTitle">
+            <span>Generic Tools</span>
+            <span class="badge">Gets the job done</span>
+          </div>
+          <ul class="compareList">
+            <li class="liRow"><span class="no">✕</span> Smart zoom on clicks</li>
+            <li class="liRow"><span class="no">✕</span> Branded cursor styles</li>
+            <li class="liRow"><span class="no">✕</span> Clean webcam frames</li>
+            <li class="liRow"><span class="ok">✓</span> Basic export</li>
+            <li class="liRow"><span class="ok">✓</span> Simple interface</li>
+          </ul>
+        </div>
+
+        <div class="compareCard">
+          <div class="compareTitle">
+            <span>Pro Tools</span>
+            <span class="badge">Power, but heavy</span>
+          </div>
+          <ul class="compareList">
+            <li class="liRow"><span class="no">✕</span> Smart zoom on clicks</li>
+            <li class="liRow"><span class="ok">✓</span> Advanced overlays</li>
+            <li class="liRow"><span class="no">✕</span> Simple interface</li>
+            <li class="liRow"><span class="no">✕</span> One-click export</li>
+            <li class="liRow"><span class="no">✕</span> Friendly price</li>
+          </ul>
+        </div>
+      </div>
     </section>
 
-    <!-- PRICING -->
-    <section class="pricing">
-        <div class="pricing-container">
-            <h2>Simple pricing for everyone</h2>
-            <p class="pricing-copy">Start free, upgrade when you're ready. Early waitlist members get special launch pricing.</p>
-            <div class="pricing-cards">
-                <div class="pricing-card featured">
-                    <div class="plan-name">Free</div>
-                    <div class="price" style="filter: none;">$0</div>
-                    <div class="price-period" style="filter: none;">forever</div>
-                    <ul class="pricing-features">
-                        <li>Screen recording</li>
-                        <li>Default webcam frames</li>
-                        <li>Basic cursor</li>
-                        <li>720p export</li>
-                        <li>Default click animations</li>
-                    </ul>
-                    <button class="pricing-btn">Get Started</button>
-                </div>
-                <div class="pricing-card">
-                    <div class="plan-name">Monthly</div>
-                    <div class="price">$5</div>
-                    <div class="price-period">per month</div>
-                    <ul class="pricing-features">
-                        <li>Everything in Free</li>
-                        <li>Smart zoom</li>
-                        <li>Multiple webcam frames</li>
-                        <li class="feature-blurred">Custom cursors</li>
-                        <li class="feature-blurred">HD export</li>
-                        <li class="feature-blurred">Unlimited recording</li>
-                    </ul>
-                    <button class="pricing-btn">Coming Soon</button>
-                </div>
-                <div class="pricing-card">
-                    <div class="plan-name">Lifetime</div>
-                    <div class="price">$75</div>
-                    <div class="price-period">one-time payment</div>
-                    <ul class="pricing-features">
-                        <li>Everything in Monthly</li>
-                        <li>Lifetime updates</li>
-                        <li>Priority support</li>
-                        <li class="feature-blurred">Early features</li>
-                        <li class="feature-blurred">Special perks</li>
-                        <li class="feature-blurred">Best value</li>
-                    </ul>
-                    <button class="pricing-btn">Coming Soon</button>
-                </div>
-            </div>
+    <section id="gallery" class="section">
+      <div class="sectionHead">
+        <div>
+          <div class="sectionTitle">Designed like a real macOS app</div>
+          <p class="sectionDesc">
+            Your UI already has a strong direction (control bar + settings). This page leans into that:
+            dark, clean, and intentional.
+          </p>
         </div>
+      </div>
+
+      <div class="gallery">
+        <div class="shot">
+          <img src="https://raw.githubusercontent.com/megdesigns/Showcase/main/photos/mockup-1.png" alt="Showcase on MacBook mockup" />
+        </div>
+        <div class="shot">
+          <img src="https://raw.githubusercontent.com/megdesigns/Showcase/main/photos/mockup-2.png" alt="Showcase billboard mockup" />
+        </div>
+        <div class="shot">
+          <img src="https://raw.githubusercontent.com/megdesigns/Showcase/main/photos/mockup-3.png" alt="Showcase poster mockup" />
+        </div>
+      </div>
     </section>
 
-     <!-- MOCKUP GALLERY -->
-    <section class="mockup-gallery">
-        <div class="mockup-container">
-            <div class="mockup-grid">
-                <div class="mockup-item">
-                    <img src="https://raw.githubusercontent.com/megdesigns/Showcase/main/photos/mockup-1.png" alt="Showcase on MacBook">
-                </div>
-                <div class="mockup-item">
-                    <img src="https://raw.githubusercontent.com/megdesigns/Showcase/main/photos/mockup-2.png" alt="Showcase Billboard">
-                </div>
-                <div class="mockup-item">
-                    <img src="https://raw.githubusercontent.com/megdesigns/Showcase/main/photos/mockup-3.png" alt="Showcase Poster">
-                </div>
-            </div>
+    <section id="pricing" class="section">
+      <div class="sectionHead">
+        <div>
+          <div class="sectionTitle">Simple pricing</div>
+          <p class="sectionDesc">
+            Start free. Upgrade when you’re ready. <strong>Waitlist members</strong> get early launch perks.
+          </p>
         </div>
+      </div>
+
+      <div class="pricingGrid">
+        <div class="priceCard featured">
+          <div class="plan">
+            <span>Free</span>
+            <span class="badge">Available at launch</span>
+          </div>
+          <div class="money">$0</div>
+          <div class="period">forever</div>
+
+          <ul class="feat">
+            <li><span class="ok">✓</span> Screen recording</li>
+            <li><span class="ok">✓</span> Default webcam frames</li>
+            <li><span class="ok">✓</span> Basic cursor</li>
+            <li><span class="ok">✓</span> 720p export</li>
+            <li><span class="ok">✓</span> Default click animations</li>
+          </ul>
+
+          <a class="btn btnPrimary" href="https://tally.so/r/D4p48Z">Join the waitlist</a>
+        </div>
+
+        <div class="priceCard">
+          <div class="plan">
+            <span>Monthly</span>
+            <span class="badge">Coming soon</span>
+          </div>
+          <div class="money" style="filter: blur(10px); user-select:none;">$5</div>
+          <div class="period" style="filter: blur(8px); user-select:none;">per month</div>
+
+          <ul class="feat">
+            <li><span class="ok">✓</span> Everything in Free</li>
+            <li><span class="ok">✓</span> Smart zoom</li>
+            <li><span class="ok">✓</span> Multiple webcam frames</li>
+            <li class="blur"><span class="ok">✓</span> Custom cursors</li>
+            <li class="blur"><span class="ok">✓</span> HD export</li>
+            <li class="blur"><span class="ok">✓</span> Unlimited recording</li>
+          </ul>
+
+          <button class="btn" type="button" disabled style="opacity:.7;">Coming soon</button>
+        </div>
+
+        <div class="priceCard">
+          <div class="plan">
+            <span>Lifetime</span>
+            <span class="badge">Coming soon</span>
+          </div>
+          <div class="money" style="filter: blur(10px); user-select:none;">$75</div>
+          <div class="period" style="filter: blur(8px); user-select:none;">one-time</div>
+
+          <ul class="feat">
+            <li><span class="ok">✓</span> Everything in Monthly</li>
+            <li><span class="ok">✓</span> Lifetime updates</li>
+            <li><span class="ok">✓</span> Priority support</li>
+            <li class="blur"><span class="ok">✓</span> Early features</li>
+            <li class="blur"><span class="ok">✓</span> Special perks</li>
+            <li class="blur"><span class="ok">✓</span> Best value</li>
+          </ul>
+
+          <button class="btn" type="button" disabled style="opacity:.7;">Coming soon</button>
+        </div>
+      </div>
     </section>
 
-    <!-- FINAL CTA -->
-    <section class="final-cta">
-        <h2>Ready to create better screen recordings?</h2>
-        <div class="cta-container">
-            <a href="https://tally.so/r/D4p48Z" class="primary-cta">Join the Showcase waitlist</a>
-            <p class="helper-text">Be the first to get access • No spam</p>
+    <section class="section" style="padding-top: 30px;">
+      <div class="ctaBlock">
+        <h2>Ready to make your tutorials look premium?</h2>
+        <p class="emline">
+          <strong>Showcase is for creators who care about details</strong> —
+          the cursor, the framing, the pacing, the finish.
+          <span style="color:var(--muted2)">If you’re proud of your work, your recording should match it.</span>
+        </p>
+        <div class="ctaRow" style="justify-content:center;">
+          <a class="btn btnPrimary" href="https://tally.so/r/D4p48Z">Join the Showcase waitlist</a>
+          <a class="btn" href="#story">Read the story</a>
         </div>
+        <div class="helper">Be first to get access • No spam</div>
+      </div>
     </section>
 
     <footer>
-        <p>&copy; 2026 Showcase. For creators who care about details.</p>
-        <p>Built by <a href="https://mariangasinu.com">Meg</a> × <a href="https://ahglinder.com">Grey</a> • <a href="privacy.html">Privacy</a></p>
+      <div class="wrap">
+        <div class="footRow">
+          <div>&copy; 2026 Showcase. For creators who care about details.</div>
+          <div>
+            Built by <a href="https://mariangasinu.com">Meg</a> × <a href="https://ahglinder.com">Grey</a> •
+            <a href="privacy.html">Privacy</a>
+          </div>
+        </div>
+      </div>
     </footer>
-    
-    <script>
-        const cursor = document.querySelector('.custom-cursor');
-        let mouseX = 0, mouseY = 0, cursorX = 0, cursorY = 0;
-        document.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY; });
-        function animateCursor() {
-            const delay = 0.15;
-            cursorX += (mouseX - cursorX) * delay;
-            cursorY += (mouseY - cursorY) * delay;
-            cursor.style.left = cursorX + 'px';
-            cursor.style.top = cursorY + 'px';
-            requestAnimationFrame(animateCursor);
-        }
-        animateCursor();
-        document.querySelectorAll('a, button, .feature-card, .comparison-card, .pricing-card, .mockup-item').forEach(el => {
-            el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
-            el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+  </main>
+
+  <script>
+    const cursor = document.querySelector(".cursor");
+    let mx = 0, my = 0, cx = 0, cy = 0;
+
+    function cursorLoop(){
+      cx += (mx - cx) * 0.18;
+      cy += (my - cy) * 0.18;
+      if (cursor){
+        cursor.style.left = cx + "px";
+        cursor.style.top  = cy + "px";
+      }
+      requestAnimationFrame(cursorLoop);
+    }
+
+    const canHover = window.matchMedia("(hover: hover)").matches;
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (cursor && canHover && !reduceMotion){
+      document.addEventListener("mousemove", (e) => { mx = e.clientX; my = e.clientY; });
+      cursorLoop();
+
+      const hoverables = document.querySelectorAll("a, button, .storyCard, .shot, .compareCard, .priceCard");
+      hoverables.forEach(el => {
+        el.addEventListener("mouseenter", () => cursor.classList.add("hover"));
+        el.addEventListener("mouseleave", () => cursor.classList.remove("hover"));
+      });
+    } else if (cursor){
+      cursor.style.display = "none";
+    }
+
+    const logo = document.getElementById("logoImage");
+    const heroPreviewImage = document.getElementById("heroPreviewImage");
+    const previewToggles = document.querySelectorAll(".previewToggle");
+    const CONTROL_BAR_IMAGE = "https://raw.githubusercontent.com/megdesigns/Showcase/main/photos/hero-app.png";
+    const SETTINGS_IMAGE = "https://raw.githubusercontent.com/megdesigns/Showcase/main/photos/settingsui.png";
+
+    function setTheme(next){
+      const html = document.documentElement;
+      if (next === "light"){
+        html.setAttribute("data-theme","light");
+        if (logo) logo.src = "https://raw.githubusercontent.com/megdesigns/Showcase/main/photos/Showcaselogolightmode.png";
+        localStorage.setItem("theme","light");
+      } else {
+        html.setAttribute("data-theme","dark");
+        if (logo) logo.src = "https://raw.githubusercontent.com/megdesigns/Showcase/main/photos/showcaselogodarkmode.png";
+        localStorage.setItem("theme","dark");
+      }
+    }
+
+    function toggleTheme(){
+      const current = document.documentElement.getAttribute("data-theme") || "dark";
+      setTheme(current === "dark" ? "light" : "dark");
+    }
+
+    function setPreview(type){
+      if (!heroPreviewImage) return;
+      const nextSrc = type === "settings" ? SETTINGS_IMAGE : CONTROL_BAR_IMAGE;
+      heroPreviewImage.src = nextSrc;
+      heroPreviewImage.alt = type === "settings" ? "Showcase settings preview" : "Showcase control bar preview";
+      previewToggles.forEach((toggle) => {
+        const active = toggle.dataset.target === type;
+        toggle.setAttribute("aria-pressed", active ? "true" : "false");
+      });
+    }
+
+    if (heroPreviewImage){
+      heroPreviewImage.addEventListener("error", () => {
+        heroPreviewImage.src = CONTROL_BAR_IMAGE;
+        heroPreviewImage.alt = "Showcase control bar preview";
+        previewToggles.forEach((toggle) => {
+          const active = toggle.dataset.target === "control";
+          toggle.setAttribute("aria-pressed", active ? "true" : "false");
         });
-        
-        function toggleTheme() {
-            const html = document.documentElement;
-            const icon = document.querySelector('.theme-icon');
-            const logo = document.getElementById('logoImage');
-            
-            if (html.getAttribute('data-theme') === 'dark') {
-                html.removeAttribute('data-theme');
-                icon.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>';
-                logo.src = 'https://raw.githubusercontent.com/megdesigns/Showcase/main/photos/Showcaselogolightmode.png';
-                localStorage.setItem('theme', 'light');
-            } else {
-                html.setAttribute('data-theme', 'dark');
-                icon.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>';
-                logo.src = 'https://raw.githubusercontent.com/megdesigns/Showcase/main/photos/showcaselogodarkmode.png';
-                localStorage.setItem('theme', 'dark');
-            }
-        }
-        if (localStorage.getItem('theme') === 'dark') {
-            document.documentElement.setAttribute('data-theme', 'dark');
-            document.querySelector('.theme-icon').innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>';
-            document.getElementById('logoImage').src = 'https://raw.githubusercontent.com/megdesigns/Showcase/main/photos/Showcaselogodarkmode.png';
-        }
-    </script>
+      });
+    }
+
+    previewToggles.forEach((toggle) => {
+      toggle.addEventListener("click", () => setPreview(toggle.dataset.target));
+    });
+
+    const saved = localStorage.getItem("theme");
+    if (saved === "light" || saved === "dark") setTheme(saved);
+    else setTheme("dark");
+  </script>
 </body>
 </html>
