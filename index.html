@@ -234,6 +234,8 @@
       display:flex; align-items:center; gap: 12px; flex-wrap:wrap;
       margin: 18px 0 8px;
     }
+    .ctaRow--feature{ margin-top: 14px; }
+    .ctaRow--center{ justify-content: center; }
     .helper{
       color: var(--muted2);
       font-size: 13px;
@@ -627,13 +629,16 @@
       .priceCard,
       .storyCard{ padding: 14px; }
 
-      .featureCta{
+      .ctaRow{
         gap: 10px;
         display: grid;
         grid-template-columns: 1fr;
         width: 100%;
+        max-width: 360px;
+        margin-left: auto;
+        margin-right: auto;
       }
-      .featureCta .btn{
+      .ctaRow .btn{
         width: 100%;
         min-width: 0;
       }
@@ -806,7 +811,7 @@
               </li>
             </ul>
 
-            <div class="ctaRow featureCta" style="margin-top:14px;">
+            <div class="ctaRow ctaRow--feature">
               <a class="btn btnPrimary" href="https://tally.so/r/D4p48Z">Get early access</a>
               <a class="btn" href="#compare">Compare tools</a>
             </div>
@@ -976,7 +981,7 @@
           the cursor, the framing, the pacing, the finish.
           <span style="color:var(--muted2)">If you’re proud of your work, your recording should match it.</span>
         </p>
-        <div class="ctaRow" style="justify-content:center;">
+        <div class="ctaRow ctaRow--center">
           <a class="btn btnPrimary" href="https://tally.so/r/D4p48Z">Join the Showcase waitlist</a>
           <a class="btn" href="#story">Read the story</a>
         </div>
