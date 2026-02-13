@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
@@ -5,8 +6,8 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Showcase — Screen recordings that show off</title>
 
-  <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/megdesigns/Showcase/main/photos/Showcaselogolightmode.png" />
-  <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/megdesigns/Showcase/main/photos/Showcaselogolightmode.png" />
+  <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/megdesigns/Showcase/main/photos/showcaselogolightmode.png" />
+  <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/megdesigns/Showcase/main/photos/showcaselogolightmode.png" />
   <meta name="description" content="Showcase is a screen recording tool for designers, developers, creators, and educators. Record with smart zoom, custom cursors, and branded webcam frames." />
 
   <style>
@@ -563,6 +564,58 @@
       .pricingGrid{ grid-template-columns: 1fr; }
       .navLinks{ display:none; }
     }
+    @media (max-width: 720px){
+      .wrap{ padding: 0 16px; }
+      .navInner{ padding: 12px 0; gap: 10px; }
+      .brand span{ font-size: 16px; }
+      .navRight{ gap: 8px; }
+      .navRight .pill,
+      .navRight .btnPrimary{ display:none; }
+
+      .hero{ padding: 36px 0 10px; }
+      .h1{ font-size: clamp(30px, 10vw, 40px); }
+      .sub{ max-width: 100%; }
+      .section{ padding: 44px 0; }
+      .sectionHead{ margin-bottom: 18px; }
+      .sectionTitle{ font-size: clamp(22px, 7vw, 30px); }
+
+      .heroCardTop{ padding: 12px; }
+      .heroCardTop .mini{
+        gap: 8px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        width: 100%;
+      }
+      .heroCardTop > span{ display: none; }
+      .miniChip{
+        padding: 8px 10px;
+        font-size: 11px;
+        width: 100%;
+        justify-content: center;
+      }
+      .heroCardMedia,
+      .panelPad,
+      .panelMedia{ padding: 14px; }
+
+      .compareCard,
+      .priceCard,
+      .storyCard{ padding: 14px; }
+
+      .ctaRow{
+        gap: 10px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        width: 100%;
+        max-width: 460px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .ctaRow .btn{
+        width: 100%;
+        min-width: 0;
+      }
+      .footRow{ flex-direction: column; align-items: flex-start; }
+    }
   </style>
 </head>
 
@@ -605,9 +658,9 @@
           <h1 class="h1">Screen recordings that <span class="headlineAccent">show off</span>.</h1>
 
           <p class="emline sub">
-            <strong>Showcase prioritizes making your screen recordings look as good as your work</strong>,
-            so your recordings don’t feel like an afterthought.
-            <span style="color:var(--muted2)">No default cursors. No boring exports. No lifeless exports. </span>
+            <strong>Showcase helps your tutorials look as polished as your work</strong> —
+            so your screen recordings don’t feel like an afterthought.
+            <span style="color:var(--muted2)">No default cursors. No boring exports. No “good enough.”</span>
           </p>
 
           <div class="ctaRow">
@@ -637,8 +690,8 @@
         <div>
           <div class="sectionTitle">Recording is easy. Making it look good isn’t.</div>
           <p class="sectionDesc">
-            Most tools are built to capture your screen. Showcase is an aesthetic-first screen-recording tool built to <strong>present</strong>
-            with the same care you put into your designs, code, lessons, or walkthroughs.  
+            Most tools are built to capture your screen. Showcase is built to <strong>present</strong> it —
+            with the same care you put into your designs, code, lessons, or walkthroughs.
           </p>
         </div>
       </div>
@@ -646,17 +699,17 @@
       <div class="storyGrid">
         <div class="storyCard">
           <div class="storyNum">Problem</div>
-          <h3>Your work is thoughtful. Your recording shouldn’t look generic.</h3>
+          <h3>Your work is clean. Your recording shouldn’t look generic.</h3>
           <p>Default cursors, awkward framing, and “flat” exports make even great demos feel low-effort.</p>
         </div>
         <div class="storyCard">
           <div class="storyNum">Insight</div>
           <h3>Viewers follow focus, not pixels.</h3>
-          <p>When clicks and key moments are emphasized, your audience stays locked in and follow easily.</p>
+          <p>When clicks and key moments are emphasized, your audience stays locked in — and learns faster.</p>
         </div>
         <div class="storyCard">
           <div class="storyNum">Solution</div>
-          <h3>Here's where we come in. Capture → polish → publish, in one flow.</h3>
+          <h3>Capture → polish → publish, in one flow.</h3>
           <p>Showcase bakes in zoom, cursor styling, and camera framing so the final video feels intentional.</p>
         </div>
       </div>
@@ -668,8 +721,8 @@
           <div class="sectionTitle">Built around the details people actually notice.</div>
           <p class="sectionDesc">
             <span class="emline">
-              <strong>Every interaction is a cue.</strong> Showcase makes those cues look deliberate
-              <span style="color:var(--muted2)">so your content feels premium, because it is.</span>
+              <strong>Every interaction is a cue.</strong> Showcase makes those cues look deliberate —
+              <span style="color:var(--muted2)">so your content feels premium without extra editing.</span>
             </span>
           </p>
         </div>
@@ -789,10 +842,10 @@
     <section id="gallery" class="section">
       <div class="sectionHead">
         <div>
-          <div class="sectionTitle">Polished, macOS-native feel</div>
+          <div class="sectionTitle">Designed like a real macOS app</div>
           <p class="sectionDesc">
-           Showcase feels at home on macOS. Thoughtful spacing, subtle depth, and a control bar that looks like it belongs, not just bolted on.
-Everything is designed with familiar interactions that make it instantly comfortable to use.
+            Your UI already has a strong direction (control bar + settings). This page leans into that:
+            dark, clean, and intentional.
           </p>
         </div>
       </div>
@@ -951,7 +1004,7 @@ Everything is designed with familiar interactions that make it instantly comfort
       const html = document.documentElement;
       if (next === "light"){
         html.setAttribute("data-theme","light");
-        if (logo) logo.src = "https://raw.githubusercontent.com/megdesigns/Showcase/main/photos/Showcaselogolightmode.png";
+        if (logo) logo.src = "https://raw.githubusercontent.com/megdesigns/Showcase/main/photos/showcaselogolightmode.png";
         localStorage.setItem("theme","light");
       } else {
         html.setAttribute("data-theme","dark");
@@ -997,3 +1050,4 @@ Everything is designed with familiar interactions that make it instantly comfort
   </script>
 </body>
 </html>
+```
